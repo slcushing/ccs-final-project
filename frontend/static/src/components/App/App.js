@@ -1,0 +1,41 @@
+import {useEffect, useState} from 'react';
+import {Route, Switch, withRouter, useHistory} from 'react-router-dom';
+import './App.css';
+import RegistrationForm from './../Registration/RegistrationForm';
+import Header from './../Header/Header';
+
+
+function App() {
+  const [user, setUser] = useState(null);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const response = await fetch('/rest-auth/user/');
+      if(!response.ok) {
+        setUser({isAuth: false});
+      } else {
+        const data = await response.json();
+        setUser({isAuth: true, isAdmin: data.is_staff})
+      }
+    }
+    checkAuth();
+  }, [history]);
+
+  const isAuth = user?.isAuth;
+  const isAdmin = user?.isAdmin;
+
+  return (
+    <>
+      <Header isAuth={isAuth} isAdmin={isAdmin}/>
+      <Switch>
+        <Route path='/registration'>
+          <RegistrationForm isAuth={isAuth} setUser={setUser}/>
+        </Route>
+      </Switch>
+    </>
+  );
+}
+
+export default App;
