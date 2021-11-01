@@ -2,13 +2,13 @@ import {useState} from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-function RegistrationForm (props) {
+function RegistrationForm(props) {
     const [user,setUser] = useState({
-        username:'',
+        username: '',
         email: '',
         password1: '',
-        password2:''
-    })
+        password2:'',
+    });
 
     const [error, setError] = useState(null)
 
@@ -16,7 +16,7 @@ function RegistrationForm (props) {
         const {name,value} = event.target;
         setUser(prevState => ({
             ...prevState,
-            [name]:value
+            [name]: value,
         }));
     };
 
@@ -26,25 +26,28 @@ function RegistrationForm (props) {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        console.log('user', user)
         if(user.password1 !== user.password2) {
             setError('Passwords do not match!')
         } else {
             const options = {
                 method: 'POST',
-                header: {
-                    'Content-Type':'application/json',
-                    'X-CSFRToken': Cookies.get('csfrtoken'),
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": Cookies.get("csrftoken"),
                 },
                 body: JSON.stringify(user)
             };
 
-            const response = await fetch('/rest-auth/registration', options).catch(handleError);
-            if(!response) {
+            const response = await fetch('/rest-auth/registration/', options).catch(handleError);
+            if(!response.ok) {
                 console.log(response);
             } else {
                 const data = await response.json();
                 Cookies.set('Authorization', `Token ${data.key}`);
-                props.setIsAuth(true);
+                props.setUser((prevState) => ({
+                    ...prevState, isAuth: true,
+                }));
                 props.history.push('/');
             }
         }

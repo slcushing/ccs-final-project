@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {Route, Switch, withRouter, useHistory} from 'react-router-dom';
 import './App.css';
 import RegistrationForm from './../Registration/RegistrationForm';
+import LoginForm from './../Login/LoginForm';
 import Header from './../Header/Header';
 
 
@@ -33,9 +34,12 @@ function App() {
         <Route path='/registration'>
           <RegistrationForm isAuth={isAuth} setUser={setUser}/>
         </Route>
+        <Route path='/login'>
+          <LoginForm isAuth={isAuth} setUser={setUser}/>
+        </Route>
       </Switch>
     </>
   );
 }
 
-export default App;
+export default withRouter(App);
