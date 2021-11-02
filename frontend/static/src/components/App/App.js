@@ -4,6 +4,7 @@ import './App.css';
 import RegistrationForm from './../Registration/RegistrationForm';
 import LoginForm from './../Login/LoginForm';
 import Header from './../Header/Header';
+import LandingPage from './../Landing/LandingPage';
 
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
     <>
       <Header isAuth={isAuth} isAdmin={isAdmin}/>
       <Switch>
+        {/* <Route path='/'>
+          <LandingPage/>
+        </Route> */}
         <Route path='/registration'>
           <RegistrationForm isAuth={isAuth} setUser={setUser}/>
         </Route>
