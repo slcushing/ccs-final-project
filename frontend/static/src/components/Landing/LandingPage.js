@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 function LandingPage(props) {
     return (
@@ -16,4 +16,4 @@ function LandingPage(props) {
     )
 }
 
-export default LandingPage
+export default withRouter(LandingPage)

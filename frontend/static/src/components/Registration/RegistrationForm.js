@@ -53,9 +53,9 @@ function RegistrationForm(props) {
         }
     }
 
-    if(props.isAuth) {
-        return <Redirect to='/' />
-    }
+    // if(props.isAuth) {
+    //     return <Redirect to='/' />
+    // }
 
     return (
         <form className='mt-3 col-4 offset-lg-4 register-form' onSubmit={handleSubmit}>
