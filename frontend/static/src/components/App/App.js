@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
-import {Route, Switch, withRouter, useHistory} from 'react-router-dom';
+import { Route, Switch, withRouter, useHistory } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './../PrivateRoute/PrivateRoute'
 import RegistrationForm from './../Registration/RegistrationForm';
 import LoginForm from './../Login/LoginForm';
-import MainHeader from '../Header/MainHeader';
+import MainHeader from './../Header/MainHeader';
 import LandingPage from './../Landing/LandingPage';
 import DashCalendar from './../Dashboard/DashCalendar';
 import DashboardHeader from './../Header/DashboardHeader';
@@ -36,9 +36,6 @@ function App() {
       <MainHeader isAuth={isAuth} isAdmin={isAdmin}/>
       {/* <DashCalendar/> */}
       <Switch>
-        <Route path='/'>
-          <LandingPage/>
-        </Route>
         <Route path='/registration'>
           <RegistrationForm isAuth={isAuth} setUser={setUser}/>
         </Route>
@@ -48,6 +45,9 @@ function App() {
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
           <DashboardHeader/>
         </PrivateRoute>
+        <Route path='/' exact>
+          <LandingPage isAuth={isAuth} isAdmin={isAdmin}/>
+        </Route>
       </Switch>
     </>
   );

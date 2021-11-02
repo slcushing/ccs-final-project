@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function RegistrationForm(props) {
