@@ -55,7 +55,7 @@ function App() {
   return (
     <>
       <MainHeader isAuth={isAuth} isAdmin={isAdmin} handleLogout={handleLogout}/>
-      {/* <DashCalendar/> */}
+      <DashCalendar/>
       <Switch>
         <Route path='/registration'>
           <RegistrationForm isAuth={isAuth} setUser={setUser}/>
