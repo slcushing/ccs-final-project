@@ -8,7 +8,7 @@ class Event(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     allDay = models.BooleanField(default=False)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     gymEvent = models.BooleanField(default=False)
     details = models.TextField()
 

@@ -26,6 +26,7 @@ const localizer = dateFnsLocalizer({
 
 
 function DashCalendar() {
+    const [show, setShow] = useState(false)
     const [events, setEvents] = useState();
     const [event, setEvent] = useState({
         title:'',
@@ -39,8 +40,20 @@ function DashCalendar() {
     const history = useHistory()
     
     const handleChange = (event) => {
-        const {name,value} = event.target;
-        setEvent({...event, [name]:value})
+       
+        if(event.target.type==="checkbox") {
+            setEvent((prevState) => ({
+                ...prevState,
+                [event.target.name]: event.target.checked,
+            }));
+            return;
+        }
+       
+        const { name, value } = event.target;
+        setEvent((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
     }
 
     useEffect(() => {
@@ -62,8 +75,9 @@ function DashCalendar() {
         console.warn(error);
     }
 
-    async function handleSubmit(event){
-        event.preventDefault();
+    async function handleSubmit(e){
+        // event.preventDefault();
+        // console.log()
 
         const options = {
             method: 'POST',
@@ -80,10 +94,11 @@ function DashCalendar() {
         } else {
             const data = await response.json();
             // push.history('/dashboard');
+            setShow(false);
         }
     }
 
-    const [show, setShow] = useState(false)
+   
 
     const handleClose = () => setShow(false)
     const handleSelection = (event) => {
@@ -125,17 +140,17 @@ function DashCalendar() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Group>
-                        <Form.Label>Title: </Form.Label><Form.Control type='text' onChange={handleChange} value={event.title} placeholder='Event Title'></Form.Control>
-                        <Form.Label>Start: </Form.Label><Form.Control plaintext readOnly value={event.start}></Form.Control>
-                        <Form.Label>End: </Form.Label><Form.Control plaintext readOnly value={event.end}></Form.Control>
-                        <Form.Label>Details: </Form.Label><Form.Control type='text' onChange={handleChange} value={event.details} placeholder='Event details...'></Form.Control>
-                        <Form.Check type='checkbox' label='All Day' value={event.allDay}></Form.Check>
-                        <Form.Check type='checkbox' label='Community Event' value={event.gymEvent}></Form.Check>
+                        <Form.Label>Title: </Form.Label><Form.Control type='text' onChange={handleChange} name="title" value={event.title} placeholder='Event Title'></Form.Control>
+                        <Form.Label>Start: </Form.Label><Form.Control plaintext readOnly name="start" value={event.start}></Form.Control>
+                        <Form.Label>End: </Form.Label><Form.Control plaintext readOnly name="end" value={event.end}></Form.Control>
+                        <Form.Label>Details: </Form.Label><Form.Control type='text' onChange={handleChange} name="details" value={event.details} placeholder='Event details...'></Form.Control>
+                        <Form.Check type='checkbox' label='All Day' name="allDay" checked={event.allDay} onChange={handleChange}></Form.Check>
+                        <Form.Check type='checkbox' label='Community Event' name="gymEvent" checked={event.gymEvent} onChange={handleChange}></Form.Check>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant='success' onSubmit={handleSubmit}>Save</Button>
-                    <Button variant='danger' onClick={handleClose}>Close</Button>
+                    <Button type='button' variant='success' onClick={handleSubmit}>Save</Button>
+                    <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
         </>
