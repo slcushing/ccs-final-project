@@ -8,6 +8,7 @@ import MainHeader from './../Header/MainHeader';
 import LandingPage from './../Landing/LandingPage';
 import DashCalendar from './../Dashboard/DashCalendar';
 import DashboardHeader from './../Header/DashboardHeader';
+import TaskList from './../Dashboard/TaskList';
 import Cookies from 'js-cookie';
 
 
@@ -56,6 +57,7 @@ function App() {
     <>
       <MainHeader isAuth={isAuth} isAdmin={isAdmin} handleLogout={handleLogout}/>
       <DashCalendar/>
+      {/* <TaskList/> */}
       <Switch>
         <Route path='/registration'>
           <RegistrationForm isAuth={isAuth} setUser={setUser}/>
