@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'frontend.apps.FrontendConfig',
     'events.apps.EventsConfig',
+    'tasks.apps.TasksConfig',
 ]
 
 #locking down our permissions

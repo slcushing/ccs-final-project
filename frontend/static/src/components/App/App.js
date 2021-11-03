@@ -8,6 +8,7 @@ import MainHeader from './../Header/MainHeader';
 import LandingPage from './../Landing/LandingPage';
 import DashCalendar from './../Dashboard/DashCalendar';
 import DashboardHeader from './../Header/DashboardHeader';
+import Cookies from 'js-cookie';
 
 
 function App() {
@@ -28,12 +29,32 @@ function App() {
     checkAuth();
   }, [history]);
 
+  async function handleLogout(event, props) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(user)
+    };
+    const response = await fetch('/rest-auth/logout/', options);
+    if (!response.ok) {
+      console.log(response);
+    } else {
+      const data = await response.json();
+      Cookies.remove('Authorization');
+      setUser({isAuth:false});
+      history.push('/');
+    }
+  }
+
   const isAuth = user?.isAuth;
   const isAdmin = user?.isAdmin;
 
   return (
     <>
-      <MainHeader isAuth={isAuth} isAdmin={isAdmin}/>
+      <MainHeader isAuth={isAuth} isAdmin={isAdmin} handleLogout={handleLogout}/>
       {/* <DashCalendar/> */}
       <Switch>
         <Route path='/registration'>
