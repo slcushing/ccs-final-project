@@ -6,7 +6,7 @@ import RegistrationForm from './../Registration/RegistrationForm';
 import LoginForm from './../Login/LoginForm';
 import MainHeader from './../Header/MainHeader';
 import LandingPage from './../Landing/LandingPage';
-import DashCalendar from './../Dashboard/DashCalendar';
+import Dashboard from './../Dashboard/Dashboard';
 import DashboardHeader from './../Header/DashboardHeader';
 import TaskList from './../Dashboard/TaskList';
 import Cookies from 'js-cookie';
@@ -56,8 +56,6 @@ function App() {
   return (
     <>
       <MainHeader isAuth={isAuth} isAdmin={isAdmin} handleLogout={handleLogout}/>
-      <DashCalendar/>
-      {/* <TaskList/> */}
       <Switch>
         <Route path='/registration'>
           <RegistrationForm isAuth={isAuth} setUser={setUser}/>
@@ -67,6 +65,7 @@ function App() {
         </Route>
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
           <DashboardHeader/>
+          <Dashboard/>
         </PrivateRoute>
         <Route path='/' exact>
           <LandingPage isAuth={isAuth} isAdmin={isAdmin}/>

@@ -98,12 +98,9 @@ function DashCalendar() {
         }
     }
 
-   
-
     const handleClose = () => setShow(false)
     const handleSelection = (event) => {
         setShow(true);
-        console.log(event);
         setEvent((prevState) => ({
             ...prevState,
             start: event.start,
@@ -112,7 +109,6 @@ function DashCalendar() {
         
     }
     
-
     if(!events) {
         return <div>loading</div>
     }
@@ -130,6 +126,7 @@ function DashCalendar() {
                     defaultView={"week"}
                     views={['week', 'day']}
                     onSelectSlot={handleSelection}
+                    onSelectEvent={handleSelection}
                     style={{ height: 500 }}
                     />
             </div>

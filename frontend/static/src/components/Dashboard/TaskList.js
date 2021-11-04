@@ -47,13 +47,14 @@ function TaskList() {
     }
 
     const TaskListHTML = tasks.map(task =>
-        <div key={task.id} className='task-list'>
-            <input type='checkbox' checked={task.complete}  name={task.task} onChange={handleChange}/>
+        <div key={task.id} className='task-item'>
+            <input type='checkbox' checked={task.complete}  name="task" onChange={handleChange}/>
             <label> {task.task} </label>
         </div>)
 
     return (
-        <div>
+        <div className='task-container'>
+            <h4>Tasks</h4>
             {TaskListHTML}
         </div>
     )

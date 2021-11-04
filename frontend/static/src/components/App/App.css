@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:wght@300&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -7,21 +9,88 @@
 }
 
 .landing-body section {
-  width: 75%;
+  width: 70%;
   padding: 2em;
   font-size: 72px;
+  font-family: 'Abel', sans-serif;
+  font-weight:900;
 }
 
 .landing-body aside {
   width: 25%;
   height: 100%;
   border: black solid 1px;
-  margin: 2em;
-  padding: 2em;
+  margin-top: 3em;
+  margin-right: 2em;
+  padding: 1em;
+}
+
+.landing-body h4 {
+  font-family: 'Abel', sans-serif;
+  margin: 10px;
+  text-align: center;
+}
+
+.landing-body a{
+  font-family: 'Source Code Pro', monospace;
+  text-decoration: none;
+  font-weight: bold;
+  border: solid black 1px;
+  padding: 5px;
+  color:white;
+  background-color: black;
+}
+
+.landing-body a:hover {
+  background-color: #f9010e;
+  border: solid #f9010e 1px;
+  /* font-family: 'Abel', sans-serif; */
+}
+
+.landing-atag {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.dashboard-main {
+  display: flex;
+  flex-direction: row;
 }
 
 .daily-cal {
   width: 70%;
-  padding: 2em;
+  margin: 1em;
   
 }
+
+.task-container {
+  margin: 1em;
+}
+
+.task-item label{
+  padding: 5px;
+  font-family: 'Abel', sans-serif;
+}
+
+.task-container h4 {
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-weight: 900;
+}
+
+#dash-nav {
+  column-gap: 10em;
+}
+
+#dash-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+}
+
+#dash-nav a:hover {
+  background-color:#f9010e;
+  font-family: 'Source Code Pro', monospace;
+}
+
