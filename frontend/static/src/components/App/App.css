@@ -57,6 +57,13 @@
   flex-direction: row;
 }
 
+.dash-header {
+  font-family: 'Abel', sans-serif;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+}
+
 .daily-cal {
   width: 70%;
   margin: 1em;
@@ -92,5 +99,6 @@
 #dash-nav a:hover {
   background-color:#f9010e;
   font-family: 'Source Code Pro', monospace;
+  font-weight: bold;
 }
 

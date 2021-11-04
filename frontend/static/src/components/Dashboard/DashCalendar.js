@@ -11,6 +11,14 @@ import {Modal, Button, Form} from 'react-bootstrap'
 import Cookies from 'js-cookie';
 
 
+const defaultEvent = {
+    title:'',
+    start: null,
+    end: null,
+    allDay: false,
+    gymEvent: false,
+    details:'',
+}
 
 const locales = {
     'en-US': enUS
@@ -28,20 +36,13 @@ const localizer = dateFnsLocalizer({
 function DashCalendar() {
     const [show, setShow] = useState(false)
     const [events, setEvents] = useState();
-    const [event, setEvent] = useState({
-        title:'',
-        start: null,
-        end: null,
-        allDay: false,
-        gymEvent: false,
-        details:'',
-    });
+    const [event, setEvent] = useState(defaultEvent);
 
     const history = useHistory()
     
     const handleChange = (event) => {
        
-        if(event.target.type==="checkbox") {
+        if(event.target.type === "checkbox") {
             setEvent((prevState) => ({
                 ...prevState,
                 [event.target.name]: event.target.checked,
@@ -76,8 +77,6 @@ function DashCalendar() {
     }
 
     async function handleSubmit(e){
-        // event.preventDefault();
-        // console.log()
 
         const options = {
             method: 'POST',
@@ -93,10 +92,56 @@ function DashCalendar() {
             console.log(response);
         } else {
             const data = await response.json();
-            // push.history('/dashboard');
+            data.start = new Date(data.start);
+            data.end = new Date(data.end);
             setShow(false);
+            setEvent(defaultEvent);
+            setEvents([...events, data]);
         }
     }
+
+    async function handleUpdate() {
+        
+        const options = {
+            method: 'PUT',
+            headers: {
+                'X-CSRFToken': Cookies.get('csrftoken'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(event)
+        };
+
+        const response = await fetch(`/api_v1/events/${event.id}/`, options).catch(handleError);
+        if(!response.ok) {
+            console.log(response)
+        } else {
+            setShow(false);
+            const updatedEvents = [...events];
+            const index = updatedEvents.findIndex(e => e.id === event.id);
+            updatedEvents[index] = event;
+            setEvents(updatedEvents);
+        }
+    }
+
+    async function handleDelete() {
+        const response = await fetch(`/api_v1/events/${event.id}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': Cookies.get('csrftoken'),
+            },
+        });
+
+        if(!response.ok) {
+            console.log(response)
+        } else {
+            let updatedEvents = [...events];
+            const index = updatedEvents.findIndex(e => e.id === event.id);
+            updatedEvents.splice(index, 1);
+            setEvents(updatedEvents);  
+            setShow(false);
+        }         
+    }
+
 
     const handleClose = () => setShow(false)
     const handleSelection = (event) => {
@@ -107,6 +152,17 @@ function DashCalendar() {
             end: event.end,
         }));
         
+    }
+
+    const handleEventSelect = (event) => {
+        setEvent({
+            ...event, 
+            title: event.title,
+            start: event.start,
+            end:event.end,
+            details: event.details,
+        });
+        setShow(true);
     }
     
     if(!events) {
@@ -126,7 +182,7 @@ function DashCalendar() {
                     defaultView={"week"}
                     views={['week', 'day']}
                     onSelectSlot={handleSelection}
-                    onSelectEvent={handleSelection}
+                    onSelectEvent={handleEventSelect}
                     style={{ height: 500 }}
                     />
             </div>
@@ -146,7 +202,15 @@ function DashCalendar() {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type='button' variant='success' onClick={handleSubmit}>Save</Button>
+                    {event.id 
+                    ? 
+                    <>
+                        <Button type='button' variant='warning' onClick={handleUpdate} >Update</Button>
+                        <Button type='button' variant='dark' onClick={handleDelete}>Delete</Button>
+                    </>
+                    :
+                        <Button type='button' variant='success' onClick={handleSubmit}>Save</Button>
+                    }
                     <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
@@ -155,5 +219,3 @@ function DashCalendar() {
 }
 
 export default withRouter(DashCalendar)
-
-// onClick={handleSave}
