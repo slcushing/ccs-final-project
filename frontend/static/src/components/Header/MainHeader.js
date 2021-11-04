@@ -11,7 +11,7 @@ function Header(props) {
                 <div className='collapse navbar-collapse' id='navbar-responsive'>
                     <ul className='navbar-nav ml-auto' className='container d-flex justify-content-end' id='main-nav'>
                         {props.isAuth && (
-                            <li className='nav-item'>
+                            <li className='nav-item' id='dashboard-btn'>
                                 <NavLink to='/dashboard'>Dashboard</NavLink>
                             </li>
                         )}
@@ -20,7 +20,7 @@ function Header(props) {
                         )}
                     </ul>
                 </div>
-            </div>
+            </div> 
 
         </nav>
     )

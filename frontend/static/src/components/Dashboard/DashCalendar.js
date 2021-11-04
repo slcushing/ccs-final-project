@@ -34,7 +34,7 @@ const localizer = dateFnsLocalizer({
 
 
 function DashCalendar() {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
     const [events, setEvents] = useState();
     const [event, setEvent] = useState(defaultEvent);
 

@@ -64,10 +64,28 @@
   font-weight: bold;
 }
 
+#dashboard-btn a{
+  list-style-type: none;
+  color:black;
+  text-decoration: none;
+  margin-right: 1em;
+  background-color: white;
+  padding: 3px;
+  display: flex;
+  font-family: "Abel";
+  font-weight: bold;
+}
+
+#dashboard-btn a:hover {
+  color: white;
+  background-color: #f9010e;
+  font-family: 'Source Code Pro';
+  font-weight: bold;
+}
+
 .daily-cal {
   width: 70%;
   margin: 1em;
-  
 }
 
 .task-container {
@@ -77,6 +95,40 @@
 .task-item label{
   padding: 5px;
   font-family: 'Abel', sans-serif;
+}
+
+.edit-task-btn {
+  font-family: 'Abel', sans-serif;
+  font-size: 14px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border: none;
+  margin-right: 4px;
+}
+
+.delete-task-btn {
+  font-family: 'Abel', sans-serif;
+  font-size: 14px;
+  background-color: #f9010e;
+  color: black;
+  font-weight: bold;
+  border:none;
+}
+
+.add-task-btn {
+  /* font-family: 'Source Code Pro', monospace; */
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: black solid 1px;
+}
+
+.add-task-btn:hover {
+  background-color:#f9010e;
+  color: white;
+  border:none;
 }
 
 .task-container h4 {
