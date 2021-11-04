@@ -38,7 +38,7 @@ function TaskDetail(props) {
 }
 
 
-function TaskList() {
+function TaskList(props) {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
@@ -146,7 +146,7 @@ function TaskList() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Group>
-                        <Form.Label>Task:</Form.Label><Form.Control type='text' onChange={props.handleChange} name="text" value={props.task.text}></Form.Control>
+                        <Form.Label>Task:</Form.Label><Form.Control type='text' onChange={props.handleChange} name='text' value={props.text}></Form.Control>
                     </Form.Group>
                 </Modal.Body>
             </Modal>
