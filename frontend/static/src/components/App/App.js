@@ -8,8 +8,9 @@ import MainHeader from './../Header/MainHeader';
 import LandingPage from './../Landing/LandingPage';
 import Dashboard from './../Dashboard/Dashboard';
 import DashboardHeader from './../Header/DashboardHeader';
-import TaskList from './../Dashboard/TaskList';
+import CommunityCalendar from './../Calendar/CommunityCalendar';
 import Cookies from 'js-cookie';
+
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         setUser({isAuth: false});
       } else {
         const data = await response.json();
-        setUser({isAuth: true, isAdmin: data.is_staff})
+        setUser({...data, isAuth: true, isAdmin: data.is_staff})
       }
     }
     checkAuth();
@@ -52,6 +53,7 @@ function App() {
 
   const isAuth = user?.isAuth;
   const isAdmin = user?.isAdmin;
+  const username = user?.username;
 
   return (
     <>
@@ -64,8 +66,12 @@ function App() {
           <LoginForm isAuth={isAuth} setUser={setUser}/>
         </Route>
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
-          <DashboardHeader/>
+          <DashboardHeader username={username}/>
           <Dashboard/>
+        </PrivateRoute>
+        <PrivateRoute path='/calendar' isAuth={isAuth} isAdmin={isAdmin}>
+          <DashboardHeader username={username}/>
+          <CommunityCalendar/>
         </PrivateRoute>
         <Route path='/' exact>
           <LandingPage isAuth={isAuth} isAdmin={isAdmin}/>

@@ -1,9 +1,9 @@
 import { NavLink, withRouter } from 'react-router-dom'
 
-function Dashboard(props) {
+function DashboardHeader(props) {
     return (
         <>
-        <header className="dash-header">Welcome [username]  Today is [date] </header>
+        <header className="dash-header">Welcome {props.username}!  Today is [date] </header>
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark' id='dash-header'>
             <div className='container d-flex justify-content-center'>
                 <ul className='navbar-nav' id='dash-nav'>
@@ -26,4 +26,4 @@ function Dashboard(props) {
     )
 }
 
-export default withRouter(Dashboard)
+export default withRouter(DashboardHeader)

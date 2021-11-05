@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react';
-import {withRouter, useHistory} from 'react-router-dom';
+import { withRouter, useHistory } from "react-router";
+import { useState, useEffect } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
@@ -9,7 +9,6 @@ import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {Modal, Button, Form} from 'react-bootstrap'
 import Cookies from 'js-cookie';
-
 
 const defaultEvent = {
     title:'',
@@ -33,10 +32,10 @@ const localizer = dateFnsLocalizer({
 });
 
 
-function DashCalendar() {
-    const [show, setShow] = useState(false);
+function CommunityCalendar() {
     const [events, setEvents] = useState();
     const [event, setEvent] = useState(defaultEvent);
+    const [show, setShow] = useState(false);
 
     const history = useHistory()
     
@@ -56,21 +55,19 @@ function DashCalendar() {
             [name]: value,
         }));
     }
-
     useEffect(() => {
         async function getEvents() {
             const response = await fetch(`/api_v1/events/`);
             if(!response.ok) {
-                console.log(response);
+                console.log(response)
             } else {
                 const data = await response.json();
                 const formatedEvents = data.map(event => ({...event, start: new Date(event.start), end: new Date(event.end)}));
                 setEvents(formatedEvents);
-                console.log(formatedEvents)
             }
         }
         getEvents();
-    },[]);
+    }, []);
 
     function handleError(error) {
         console.warn(error);
@@ -143,19 +140,17 @@ function DashCalendar() {
         }         
     }
 
-
     const handleClose = () => {
         setShow(false);
         setEvent(defaultEvent);
-    }
+    }    
     const handleSelection = (event) => {
         setShow(true);
         setEvent((prevState) => ({
             ...prevState,
             start: event.start,
             end: event.end,
-        }));
-        
+        }));     
     }
 
     const handleEventSelect = (event) => {
@@ -168,13 +163,14 @@ function DashCalendar() {
         });
         setShow(true);
     }
-    
+
     if(!events) {
         return <div>loading</div>
     }
     return (
         <>
-            <div className="daily-cal">
+            <h2>Community Events Calendar</h2>
+            <div className="monthly-cal">
                 <Calendar
                     selectable={true}
                     localizer={localizer}
@@ -183,11 +179,11 @@ function DashCalendar() {
                     endAccessor="end"
                     min={new Date(0,0,0,5,0,0)}
                     max={new Date(0,0,0,22,0,0)}
-                    defaultView={"week"}
-                    views={['week', 'day']}
+                    defaultView={"month"}
+                    views={['month','week']}
                     onSelectSlot={handleSelection}
                     onSelectEvent={handleEventSelect}
-                    style={{ height: 500 }}
+                    style={{ height: 700 }}
                     />
             </div>
 
@@ -198,8 +194,8 @@ function DashCalendar() {
                 <Modal.Body>
                     <Form.Group>
                         <Form.Label>Title: </Form.Label><Form.Control type='text' onChange={handleChange} name="title" value={event.title} placeholder='Event Title'></Form.Control>
-                        <Form.Label>Start: </Form.Label><Form.Control plaintext readOnly name="start" value={event.start}></Form.Control>
-                        <Form.Label>End: </Form.Label><Form.Control plaintext readOnly name="end" value={event.end}></Form.Control>
+                        <Form.Label>Start: </Form.Label><Form.Control name="start" value={event.start}></Form.Control>
+                        <Form.Label>End: </Form.Label><Form.Control name="end" value={event.end}></Form.Control>
                         <Form.Label>Details: </Form.Label><Form.Control type='text' onChange={handleChange} name="details" value={event.details} placeholder='Event details...'></Form.Control>
                         <Form.Check type='checkbox' label='All Day' name="allDay" checked={event.allDay} onChange={handleChange}></Form.Check>
                         <Form.Check type='checkbox' label='Community Event' name="gymEvent" checked={event.gymEvent} onChange={handleChange}></Form.Check>
@@ -218,8 +214,10 @@ function DashCalendar() {
                     <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
+
+
         </>
-    );
+    )
 }
 
-export default withRouter(DashCalendar)
+export default withRouter(CommunityCalendar)
