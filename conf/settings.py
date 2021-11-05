@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_auth.registration',
-    
+    'phonenumber_field',
 
     #local
     'accounts.apps.AccountsConfig',
@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'frontend.apps.FrontendConfig',
     'events.apps.EventsConfig',
     'tasks.apps.TasksConfig',
+    'workouts.apps.WorkoutsConfig',
 ]
 
 #locking down our permissions

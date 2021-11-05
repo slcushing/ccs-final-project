@@ -11,6 +11,8 @@ whitenoise = "~=5.2.0"
 django-rest-auth = "~=0.9.5"
 django-allauth = "~=0.45.0"
 pillow = "~=8.4.0"
+django-phonenumber-field = "~=5.2.0"
+phonenumbers = "~=8.12.27"
 
 [dev-packages]
 

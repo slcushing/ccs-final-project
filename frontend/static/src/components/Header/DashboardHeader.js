@@ -8,16 +8,16 @@ function DashboardHeader(props) {
             <div className='container d-flex justify-content-center'>
                 <ul className='navbar-nav' id='dash-nav'>
                     <li className='nav-item'>
-                        <NavLink to='/schedule'>Schedule</NavLink>
+                        <NavLink to='/dashboard'>Dashboard</NavLink>
                     </li>
                     <li className='nav-item'>
                         <NavLink to='/clients'>Clients</NavLink>
                     </li>
                     <li className='nav-item'>
-                        <NavLink to='/calendar'>Calendar</NavLink>
+                        <NavLink to='/calendar'>Event Calendar</NavLink>
                     </li>
                     <li className='nav-item'>
-                        <NavLink to='/workout'>Daily Workout</NavLink>
+                        <NavLink to='/workout'>Workouts + Classes</NavLink>
                     </li>
                 </ul>
             </div>
