@@ -9,4 +9,4 @@ class WorkoutListAPIView(generics.ListCreateAPIView):
 
 class WorkoutDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Workout.objects.all()
-    serializer_class = Workout
+    serializer_class = WorkoutSerializer

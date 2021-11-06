@@ -9,6 +9,7 @@ import LandingPage from './../Landing/LandingPage';
 import Dashboard from './../Dashboard/Dashboard';
 import DashboardHeader from './../Header/DashboardHeader';
 import CommunityCalendar from './../Calendar/CommunityCalendar';
+import Workout from './../Workout/Workout';
 import Cookies from 'js-cookie';
 
 
@@ -72,6 +73,10 @@ function App() {
         <PrivateRoute path='/calendar' isAuth={isAuth} isAdmin={isAdmin}>
           <DashboardHeader username={username}/>
           <CommunityCalendar/>
+        </PrivateRoute>
+        <PrivateRoute path='/workouts' isAuth={isAuth} isAdmin={isAdmin}>
+          <DashboardHeader username={username}/>
+          <Workout/>
         </PrivateRoute>
         <Route path='/' exact>
           <LandingPage isAuth={isAuth} isAdmin={isAdmin}/>

@@ -29,7 +29,7 @@ function TaskDetail(props) {
            
             {
                 isEditing ? 
-                <button type='button' className='edit-task-btn' onClick={handleUpdate}>save</button> :
+                <button type='button' className='save-task-btn' onClick={handleUpdate}>save</button> :
                 <button type='button' className='edit-task-btn' onClick={() => setIsEditing(true)}>edit</button>
             }
             <button type='button' className='delete-task-btn' onClick={props.handleDelete} value={id}>x</button>
