@@ -10,6 +10,7 @@ import Dashboard from './../Dashboard/Dashboard';
 import DashboardHeader from './../Header/DashboardHeader';
 import CommunityCalendar from './../Calendar/CommunityCalendar';
 import Workout from './../Workout/Workout';
+import Clients from './../Clients/Clients';
 import Cookies from 'js-cookie';
 
 
@@ -73,6 +74,10 @@ function App() {
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
           <DashboardHeader username={username}/>
           <Dashboard/>
+        </PrivateRoute>
+        <PrivateRoute path='/clients' isAuth={isAuth} isAdmin={isAdmin}>
+          <DashboardHeader username={username}/>
+          <Clients/>
         </PrivateRoute>
         <PrivateRoute path='/calendar' isAuth={isAuth} isAdmin={isAdmin}>
           <DashboardHeader username={username}/>

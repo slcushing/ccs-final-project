@@ -149,6 +149,7 @@
 }
 
 #dash-nav a:hover {
+  color: black;
   background-color:#f9010e;
   font-family: 'Source Code Pro', monospace;
   font-weight: bold;
@@ -156,4 +157,30 @@
 
 .monthly-cal {
   margin: 3em;
+}
+
+.client-photo {
+  object-fit:contain;
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.client-profile {
+  border: solid black 1px;
+  margin: 1em;
+  padding: 5px;
+  font-family: 'Source Code Pro', monospace;
+  
+}
+
+.client-container {
+  display: flex;
+}
+
+.all-clients {
+  width: 50%;
+}
+
+.pt-clients {
+  width: 50%;
 }

@@ -13,8 +13,8 @@ function TaskDetail(props) {
     }
 
     const handleUpdate = (event) => {
-        const udpatedTask = {...props.task, text: editText}
-        props.handleUpdate(udpatedTask);
+        const updatedTask = {...props.task, text: editText}
+        props.handleUpdate(updatedTask);
         setIsEditing(false);
     }
 
