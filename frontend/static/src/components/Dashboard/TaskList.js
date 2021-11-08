@@ -81,17 +81,22 @@ function TaskList(props) {
     }
 
     const handleDelete = async (event) => {
+        const id = event.target.value;
         const options = {
             method: 'DELETE',
             headers: {
                 'X-CSRFToken': Cookies.get('csrftoken'),
             },
         };
-        const response = await fetch(`/api_v1/tasks/${event.target.value}/`, options);
-        
+        const response = await fetch(`/api_v1/tasks/${id}/`, options);
         if (!response.ok) {
             console.log(response);
-        } 
+        } else {
+            let updatedTasks = [...tasks];
+            const index = updatedTasks.findIndex(e => e.id === id);
+            updatedTasks.splice(index, 1);
+            setTasks(updatedTasks);
+        }
     }
 
     const toggleCompletion = async (event) => {

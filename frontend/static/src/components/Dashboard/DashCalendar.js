@@ -140,7 +140,7 @@ function DashCalendar() {
             updatedEvents.splice(index, 1);
             setEvents(updatedEvents);  
             setShow(false);
-        }         
+        }
     }
 
 

@@ -56,6 +56,10 @@ function App() {
   const isAdmin = user?.isAdmin;
   const username = user?.username;
 
+  if(!user) {
+    return <div>I am loading!</div>
+  }
+
   return (
     <>
       <MainHeader isAuth={isAuth} isAdmin={isAdmin} handleLogout={handleLogout}/>

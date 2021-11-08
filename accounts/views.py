@@ -6,11 +6,14 @@ from .serializers import ProfileSerializer
 # Create your views here.
 
 class ProfileListAPIView(generics.ListCreateAPIView):
-    queryset = Profile.objects.all()
+    # queryset = Profile.objects.all()
     serializer_class=ProfileSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return Profile.objects.filter(user__is_staff=False)
         
     
 

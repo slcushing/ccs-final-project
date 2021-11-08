@@ -46,7 +46,7 @@ function WorkoutDetail(props) {
                 </>
         
             }
-                <button type='button' className='delete-workout-bt' onClick={props.handleDelete}>Delete</button>
+                <button type='button' className='delete-workout-bt' value={editWorkout.id} onClick={props.handleDelete}>Delete</button>
         </div>
     )
 
@@ -75,9 +75,9 @@ function Workouts(props) {
     const handleUpdate = async (workout) => {
         const options = {
             method: 'PUT',
-            header: {
+            headers: {
                 'X-CSRFToken' : Cookies.get('csrftoken'),
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
             },
             body: JSON.stringify(workout)
         };
@@ -100,11 +100,14 @@ function Workouts(props) {
                 'X-CSRFToken' : Cookies.get('csrftoken'),
             },
         };
-
         const response = await fetch(`/api_v1/workouts/${event.target.value}/`, options);
-
         if(!response.ok) {
             console.log(response);
+        } else {
+            let updatedWorkouts = [...workouts];
+            const index = updatedWorkouts.findIndex(e => e.id === event.target.value);
+            updatedWorkouts.splice(index, 1);
+            setWorkouts(updatedWorkouts);
         }
     }
 
