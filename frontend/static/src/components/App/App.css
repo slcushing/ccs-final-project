@@ -99,36 +99,30 @@
 
 .edit-task-btn {
   font-family: 'Abel', sans-serif;
-  font-size: 14px;
-  background-color: black;
-  color: white;
+  
+  background-color: white;
   font-weight: bold;
   border: none;
   margin-right: 4px;
 }
 
 .delete-task-btn {
-  font-family: 'Abel', sans-serif;
-  font-size: 14px;
-  background-color: #f9010e;
+  background-color: white;
   color: black;
-  font-weight: bold;
+  /* font-weight: bold; */
   border:none;
 }
 
 .add-task-btn {
-  /* font-family: 'Source Code Pro', monospace; */
-  font-size: 14px;
+  border: none;
   background-color: white;
   color: black;
-  font-weight: bold;
-  border: black solid 1px;
+  font-family: 'Abel';
 }
 
 .add-task-btn:hover {
-  background-color:#f9010e;
-  color: white;
-  border:none;
+  background-color: #f9010e;
+  border-radius: 5%;
 }
 
 .task-container h4 {
@@ -146,6 +140,7 @@
   text-decoration: none;
   font-weight: bold;
   font-family: 'Abel', sans-serif;
+  font-size: 26px;
 }
 
 #dash-nav a:hover {
@@ -156,7 +151,16 @@
 }
 
 .monthly-cal {
-  margin: 3em;
+  margin: 1em 3em 1em 3em;
+  font-family: 'source code pro';
+  font-weight: bolder;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 3px;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: bolder;
 }
 
 .client-photo {
@@ -179,8 +183,26 @@
 
 .all-clients {
   width: 50%;
+  margin: 1em;
+}
+
+.all-clients h3{
+  text-align: center;
+  font-family: 'Abel';
+  font-weight: bold;
 }
 
 .pt-clients {
   width: 50%;
+  margin: 1em;
+}
+
+.pt-clients h3{
+  text-align: center;
+  font-family: 'Abel';
+  font-weight: bold;
+}
+
+.workout-container {
+  display: flex;
 }

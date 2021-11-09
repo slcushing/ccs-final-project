@@ -158,11 +158,17 @@ function Workouts(props) {
     return(
         <>
             <div className='workout-container'>
-                <h3>Adult Performance Workout</h3>
-                <section>
+                
+                <section className='workout-list'>
+                    <h3>Adult Performance Workout</h3>
                     {WorkoutListHTML}
+                    <button type='button' className='add-workout-btn' onClick={handleAdd}>+</button>
                 </section>
-                <button type='button' className='add-workout-btn' onClick={handleAdd}>+</button>
+                
+                <section className='class-list'>
+                    <h3>Adult Performance Sessions</h3>
+                    this section is for class schedule
+                </section>
             </div>
 
             <Modal show={show} onHide={handleClose}>

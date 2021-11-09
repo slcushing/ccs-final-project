@@ -57,7 +57,7 @@ function CommunityCalendar() {
     }
     useEffect(() => {
         async function getEvents() {
-            const response = await fetch(`/api_v1/events/`);
+            const response = await fetch(`/api_v1/events/?type=community`);
             if(!response.ok) {
                 console.log(response)
             } else {

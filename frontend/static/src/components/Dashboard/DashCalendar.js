@@ -87,7 +87,7 @@ function DashCalendar() {
             body: JSON.stringify(event)
         };
 
-        const response = await fetch(`/api_v1/events/`, options).catch(handleError);
+        const response = await fetch(`/api_v1/events/?type=coach`, options).catch(handleError);
         if(!response.ok) {
             console.log(response);
         } else {

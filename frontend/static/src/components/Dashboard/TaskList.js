@@ -2,6 +2,7 @@ import { withRouter } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie';
 import {Modal, Button, Form} from 'react-bootstrap'
+import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa'
 
 function TaskDetail(props) {
     const [isEditing, setIsEditing] = useState(false);
@@ -30,9 +31,9 @@ function TaskDetail(props) {
             {
                 isEditing ? 
                 <button type='button' className='save-task-btn' onClick={handleUpdate}>save</button> :
-                <button type='button' className='edit-task-btn' onClick={() => setIsEditing(true)}>edit</button>
+                <button type='button' className='edit-task-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>
             }
-            <button type='button' className='delete-task-btn' onClick={props.handleDelete} value={id}>x</button>
+            <button type='button' className='delete-task-btn' onClick={props.handleDelete} value={id}><FaTrash/></button>
         </div>
     )
 }
@@ -173,7 +174,7 @@ function TaskList(props) {
             <div className='task-container'>
                 <h4>Tasks</h4>
                 {TaskListHTML}
-                <button type="button" className='add-task-btn' onClick={handleAdd}>+</button>
+                <button type="button" className='add-task-btn' onClick={handleAdd}>Add task <FaRegPlusSquare/></button>
             </div>
 
             <Modal show={show} onHide={handleClose}>

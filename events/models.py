@@ -10,6 +10,7 @@ class Event(models.Model):
     allDay = models.BooleanField(default=False)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     gymEvent = models.BooleanField(default=False)
+    session = models.BooleanField(default=False)
     details = models.TextField(blank=True)
 
     def __str__(self):

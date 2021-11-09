@@ -75,7 +75,7 @@ function App() {
           <DashboardHeader username={username}/>
           <Dashboard/>
         </PrivateRoute>
-        <PrivateRoute path='/clients' isAuth={isAuth} isAdmin={isAdmin}>
+        <PrivateRoute path='/clients/:filter?' isAuth={isAuth} isAdmin={isAdmin}>
           <DashboardHeader username={username}/>
           <Clients/>
         </PrivateRoute>
