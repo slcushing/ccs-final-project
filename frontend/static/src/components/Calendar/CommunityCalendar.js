@@ -1,4 +1,4 @@
-import { withRouter, useHistory } from "react-router";
+import { withRouter } from "react-router";
 import { useState, useEffect } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import format from 'date-fns/format';
@@ -37,7 +37,7 @@ function CommunityCalendar() {
     const [event, setEvent] = useState(defaultEvent);
     const [show, setShow] = useState(false);
 
-    const history = useHistory()
+    // const history = useHistory()
     
     const handleChange = (event) => {
        

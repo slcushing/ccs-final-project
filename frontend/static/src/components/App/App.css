@@ -99,18 +99,24 @@
 
 .edit-task-btn {
   font-family: 'Abel', sans-serif;
-  
   background-color: white;
   font-weight: bold;
   border: none;
   margin-right: 4px;
 }
 
+.edit-task-btn:hover {
+  color:#f9010e;
+}
+
 .delete-task-btn {
   background-color: white;
   color: black;
-  /* font-weight: bold; */
   border:none;
+}
+
+.delete-task-btn:hover {
+  color:#f9010e;
 }
 
 .add-task-btn {
@@ -174,7 +180,6 @@ h2 {
   margin: 1em;
   padding: 5px;
   font-family: 'Source Code Pro', monospace;
-  
 }
 
 .client-container {
@@ -205,4 +210,14 @@ h2 {
 
 .workout-container {
   display: flex;
+  margin-top: 2em;
+}
+
+.workout-list {
+  margin: 1em;
+  width:65%;
+}
+
+.class-list {
+  margin: 1em;
 }

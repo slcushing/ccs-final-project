@@ -82,7 +82,7 @@ function TaskList(props) {
     }
 
     const handleDelete = async (event) => {
-        const id = event.target.value;
+        const id = event.currentTarget.value;
         const options = {
             method: 'DELETE',
             headers: {

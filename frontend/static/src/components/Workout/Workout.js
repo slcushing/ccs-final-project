@@ -2,6 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import {Modal, Button, Form} from 'react-bootstrap';
+import Sessions from './../Workout/Sessions'
 
 
 
@@ -167,7 +168,7 @@ function Workouts(props) {
                 
                 <section className='class-list'>
                     <h3>Adult Performance Sessions</h3>
-                    this section is for class schedule
+                    <Sessions/>
                 </section>
             </div>
 

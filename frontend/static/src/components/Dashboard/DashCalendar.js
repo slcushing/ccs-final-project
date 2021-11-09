@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {withRouter, useHistory} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
@@ -9,6 +9,7 @@ import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {Modal, Button, Form} from 'react-bootstrap'
 import Cookies from 'js-cookie';
+
 
 
 const defaultEvent = {
@@ -38,7 +39,7 @@ function DashCalendar() {
     const [events, setEvents] = useState();
     const [event, setEvent] = useState(defaultEvent);
 
-    const history = useHistory()
+    // const history = useHistory()
     
     const handleChange = (event) => {
        
@@ -187,7 +188,7 @@ function DashCalendar() {
                     views={['week', 'day']}
                     onSelectSlot={handleSelection}
                     onSelectEvent={handleEventSelect}
-                    style={{ height: 500 }}
+                    style={{ height: 900 }}
                     />
             </div>
 
