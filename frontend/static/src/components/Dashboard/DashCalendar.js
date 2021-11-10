@@ -144,6 +144,24 @@ function DashCalendar() {
         }
     }
 
+    async function handleCancel() {
+        const response = await fetch(`api_v1/events/${event.id}/cancellation/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken' : Cookies.get('csrftoken'),
+            },
+        });
+
+        if(!response.ok) {
+            console.log(response)
+        } else {
+            let updatedEvents = [...events];
+            const index = updatedEvents.findIndex(e => e.id == event.id);
+            updatedEvents.splice(index, 1);
+            setEvents(updatedEvents);
+            setShow(false);
+        }
+    }
 
     const handleClose = () => {
         setShow(false);
@@ -207,9 +225,10 @@ function DashCalendar() {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    {event.id 
+                    {event.id
                     ? 
                     <>
+                        <Button type='button' variant='info' onClick={handleCancel}>Cancel Event</Button>
                         <Button type='button' variant='warning' onClick={handleUpdate} >Update</Button>
                         <Button type='button' variant='dark' onClick={handleDelete}>Delete</Button>
                     </>

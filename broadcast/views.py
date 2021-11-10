@@ -5,6 +5,7 @@ from twilio.rest import Client
 
 def broadcast_sms(recipients, message):
     print(recipients)
+    print('message', message)
     for recipient in recipients:
         print(recipient.phone_number)
     # message_to_broadcast = ("Have you played the incredible TwilioQuest "

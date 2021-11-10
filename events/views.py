@@ -5,11 +5,16 @@ from accounts.models import Profile
 
 from .models import Event
 from .serializers import EventSerializer
+from .permissions import IsCoachOrReadOnly
 
 # Create your views here.
 
+
+
+
+
 class EventListAPIView(generics.ListCreateAPIView):
-    
+    permission_classes = (IsCoachOrReadOnly,)
     serializer_class = EventSerializer
 
     def perform_create(self, serializer):
@@ -37,9 +42,13 @@ class EventCancellationAPIView(generics.DestroyAPIView):
 
     def perform_destroy(self, instance):
 
-        if instance.gymEvent:
-            profiles = Profile.objects.all()
-            broadcast_sms(profiles)
+        recipients = Profile.objects.all()
+        message = "The event " + instance.title + " is cancelled."
+
+        if not instance.gymEvent:
+            pass
+           
+        broadcast_sms(recipients, message)
         
         import pdb 
         pdb.set_trace()

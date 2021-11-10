@@ -127,17 +127,37 @@ function CommunityCalendar() {
             headers: {
                 'X-CSRFToken': Cookies.get('csrftoken'),
             },
+            
         });
 
         if(!response.ok) {
             console.log(response)
         } else {
             let updatedEvents = [...events];
-            const index = updatedEvents.findIndex(e => e.id === event.id);
+            const index = updatedEvents.findIndex(e => e.id == event.id);
             updatedEvents.splice(index, 1);
             setEvents(updatedEvents);  
             setShow(false);
         }         
+    }
+
+    async function handleCancel() {
+        const response = await fetch(`api_v1/events/${event.id}/cancellation/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken' : Cookies.get('csrftoken'),
+            },
+        });
+
+        if(!response.ok) {
+            console.log(response)
+        } else {
+            let updatedEvents = [...events];
+            const index = updatedEvents.findIndex(e => e.id == event.id);
+            updatedEvents.splice(index, 1);
+            setEvents(updatedEvents);
+            setShow(false);
+        }
     }
 
     const handleClose = () => {
@@ -202,15 +222,17 @@ function CommunityCalendar() {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    {event.id 
+                    {event.id
                     ? 
                     <>
+                        <Button type='button' variant='info' onClick={handleCancel}>Cancel Event</Button>
                         <Button type='button' variant='warning' onClick={handleUpdate} >Update</Button>
                         <Button type='button' variant='dark' onClick={handleDelete}>Delete</Button>
                     </>
                     :
                         <Button type='button' variant='success' onClick={handleSubmit}>Save</Button>
                     }
+
                     <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
