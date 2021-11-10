@@ -196,4 +196,5 @@ MEDIA_URL = '/media/'
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'accounts.serializers.UserDetailsSerializer',
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
 }

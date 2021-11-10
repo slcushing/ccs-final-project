@@ -150,7 +150,8 @@
   font-size: 26px;
 }
 
-#dash-nav a:hover {
+#dash-nav a:hover,
+#dash-nav a:focus {
   color: black;
   background-color:#f9010e;
   font-family: "Abel";
@@ -184,30 +185,13 @@ h2 {
   font-family: 'Source Code Pro', monospace;
 }
 
-.client-container {
-  display: flex;
+.client-container { 
+  margin: 2em;
+  width:100%;
 }
 
-.all-clients {
-  width: 50%;
-  margin: 1em;
-}
-
-.all-clients h3{
-  text-align: center;
-  font-family: 'Abel';
-  font-weight: bold;
-}
-
-.pt-clients {
-  width: 50%;
-  margin: 1em;
-}
-
-.pt-clients h3{
-  text-align: center;
-  font-family: 'Abel';
-  font-weight: bold;
+.client-list {
+  width: 60%;
 }
 
 .workout-container {

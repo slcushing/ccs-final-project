@@ -12,6 +12,7 @@ class Event(models.Model):
     gymEvent = models.BooleanField(default=False)
     session = models.BooleanField(default=False)
     details = models.TextField(blank=True)
+    attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='attendees', blank=True)
 
     def __str__(self):
         return self.title

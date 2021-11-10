@@ -40,14 +40,25 @@ function LoginForm(props) {
             Cookies.set('Authorization', `Token ${data.key}`);
             props.setUser((prevState) => ({
                 ...prevState,
-                isAuth:true,
+                isAuth: true, 
+                isAdmin: data.user.is_staff,
+                username: data.user.username,
             }));
-            props.history.push('/dashboard/');
+            if(data.user.is_staff) {
+                props.history.push('/dashboard/');
+            } else {
+                props.history.push('/workouts/'); 
+            }
+            
         }
     }
 
+    if(props.isAuth && props.isAdmin) {
+        return <Redirect to='/dashboard' />
+    }
+
     if(props.isAuth) {
-        return <Redirect to='/' />
+        return <Redirect to='/workouts' />
     }
 
     return (

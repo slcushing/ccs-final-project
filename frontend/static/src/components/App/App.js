@@ -53,38 +53,40 @@ function App() {
     }
   }
 
-  const isAuth = user?.isAuth;
-  const isAdmin = user?.isAdmin;
-  const username = user?.username;
+ 
 
   if(!user) {
     return <div>I am loading!</div>
   }
 
+  const isAuth = user?.isAuth;
+  const isAdmin = user?.isAdmin;
+  const username = user?.username;
+  console.log('user', user);
+  console.log(isAdmin);
+  console.log(username);
+
   return (
     <>
       <MainHeader isAuth={isAuth} isAdmin={isAdmin} handleLogout={handleLogout}/>
+      {isAuth && <DashboardHeader username={username} isAdmin={isAdmin}/> }
       <Switch>
         <Route path='/registration'>
           <RegistrationForm isAuth={isAuth} setUser={setUser}/>
         </Route>
         <Route path='/login'>
-          <LoginForm isAuth={isAuth} setUser={setUser}/>
+          <LoginForm isAuth={isAuth} isAdmin={isAdmin} setUser={setUser}/>
         </Route>
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
-          <DashboardHeader username={username}/>
           <Dashboard/>
         </PrivateRoute>
         <PrivateRoute path='/clients/:filter?' isAuth={isAuth} isAdmin={isAdmin}>
-          <DashboardHeader username={username}/>
           <Clients/>
         </PrivateRoute>
         <PrivateRoute path='/calendar' isAuth={isAuth} isAdmin={isAdmin}>
-          <DashboardHeader username={username}/>
           <CommunityCalendar/>
         </PrivateRoute>
         <PrivateRoute path='/workouts' isAuth={isAuth} isAdmin={isAdmin}>
-          <DashboardHeader username={username}/>
           <Workout/>
         </PrivateRoute>
         <Route path='/' exact>

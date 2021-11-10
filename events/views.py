@@ -10,9 +10,6 @@ from .permissions import IsCoachOrReadOnly
 # Create your views here.
 
 
-
-
-
 class EventListAPIView(generics.ListCreateAPIView):
     permission_classes = (IsCoachOrReadOnly,)
     serializer_class = EventSerializer

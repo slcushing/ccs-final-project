@@ -10,11 +10,11 @@ function Header(props) {
                 </button>
                 <div className='collapse navbar-collapse' id='navbar-responsive'>
                     <ul className='navbar-nav ml-auto' className='container d-flex justify-content-end' id='main-nav'>
-                        {/* {props.isAuth && (
+                        {props.isAuth && (
                             <li className='nav-item' id='dashboard-btn'>
                                 <NavLink to='/dashboard'>Dashboard</NavLink>
                             </li>
-                        )} */}
+                        )}
                         {props.isAuth && (
                             <button type='submit' className='logout' onClick={() => props.handleLogout()}>Logout</button>
                         )}

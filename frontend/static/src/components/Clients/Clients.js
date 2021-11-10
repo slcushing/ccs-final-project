@@ -1,4 +1,4 @@
-import { withRouter, useParams } from 'react-router-dom';
+import { withRouter, useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 
@@ -40,15 +40,12 @@ function Clients(props) {
         
     
     return (
-        <div className='client-container'>
-        <section className='all-clients'>
-            <h3>All Members</h3>
-            {ClientHTML}
-        </section>
-        <section className='pt-clients'>
-            <h3>Personal Training Clients</h3>
-            this is going to be for PT clients.
-        </section>
+        <div className='client-container d-flex justify-content-center'>
+            <section className='client-list'>
+                <NavLink to='/clients/'>All Members</NavLink>
+                <NavLink to='/clients/pt/'>Personal Training Clients</NavLink>
+                {ClientHTML}
+            </section>
         </div>
     )
 }
