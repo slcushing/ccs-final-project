@@ -106,7 +106,7 @@ function Workouts(props) {
             console.log(response);
         } else {
             let updatedWorkouts = [...workouts];
-            const index = updatedWorkouts.findIndex(e => e.id === event.target.value);
+            const index = updatedWorkouts.findIndex(e => e.id == event.target.value);
             updatedWorkouts.splice(index, 1);
             setWorkouts(updatedWorkouts);
         }
@@ -161,13 +161,13 @@ function Workouts(props) {
             <div className='workout-container'>
                 
                 <section className='workout-list'>
-                    <h3>Adult Performance Workout</h3>
+                    <h3>Adult Performance Workouts</h3>
                     {WorkoutListHTML}
                     <button type='button' className='add-workout-btn' onClick={handleAdd}>+</button>
                 </section>
                 
                 <section className='class-list'>
-                    <h3>Adult Performance Sessions</h3>
+                    <h3>Adult Performance Group Training</h3>
                     <Sessions/>
                 </section>
             </div>

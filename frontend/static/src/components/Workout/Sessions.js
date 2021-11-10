@@ -23,7 +23,7 @@ function Sessions(props) {
 
     const sessionsHTML = sessions.map(event =>
             <div key={event.id} className = 'session-info'>
-                <p className='d-block'>AP Session
+                <p className='d-block'>Adult Performance Group Training
                 <time className="d-block">start: {format(new Date(event.start), 'MM/dd/yyyy hh:mm a')}</time>
                 <time className="d-block">end: {format(new Date(event.end), 'MM/dd/yyyy hh:mm a')}</time>
                 </p>

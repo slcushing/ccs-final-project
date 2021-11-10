@@ -17,7 +17,7 @@ function DashboardHeader(props) {
                         <NavLink to='/calendar'>Event Calendar</NavLink>
                     </li>
                     <li className='nav-item'>
-                        <NavLink to='/workouts'>Workouts + Classes</NavLink>
+                        <NavLink to='/workouts'>Workouts + Group Training</NavLink>
                     </li>
                 </ul>
             </div>

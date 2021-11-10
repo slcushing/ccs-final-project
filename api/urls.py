@@ -7,4 +7,5 @@ urlpatterns = [
     path('events/', include('events.urls', namespace='events')),
     path('tasks/', include('tasks.urls', namespace='tasks')),
     path('workouts/', include('workouts.urls', namespace='workouts')),
+    path('broadcast/', include('broadcast.urls', namespace="broadcast")),
 ]

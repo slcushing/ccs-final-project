@@ -35,13 +35,14 @@ function Clients(props) {
             <p>PT Coach: {client.coach_name}</p>
 
         </div>
-        )
     
+        )
+        
     
     return (
         <div className='client-container'>
         <section className='all-clients'>
-            <h3>All Clients</h3>
+            <h3>All Members</h3>
             {ClientHTML}
         </section>
         <section className='pt-clients'>

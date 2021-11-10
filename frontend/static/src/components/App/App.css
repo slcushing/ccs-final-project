@@ -120,10 +120,11 @@
 }
 
 .add-task-btn {
-  border: none;
+  border: black solid 1px;
   background-color: white;
   color: black;
   font-family: 'Abel';
+
 }
 
 .add-task-btn:hover {
@@ -152,8 +153,9 @@
 #dash-nav a:hover {
   color: black;
   background-color:#f9010e;
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Abel";
   font-weight: bold;
+  padding: 5px;
 }
 
 .monthly-cal {

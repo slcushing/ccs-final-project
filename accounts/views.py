@@ -21,3 +21,7 @@ class ProfileListAPIView(generics.ListCreateAPIView):
 # class AccountDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Profile.objects.all()
 #     serializer_class = AccountSerializer
+
+
+#classyclass django
+#django generic function based view - don't do as class 3.2 topics 

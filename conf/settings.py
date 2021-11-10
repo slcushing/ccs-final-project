@@ -32,6 +32,14 @@ ALLOWED_HOSTS = [
 ]
 
 
+TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
+TWILIO_AUTH_TOKEN = os.environ["TWILIO_AUTH_TOKEN"]
+TWILIO_NUMBER = os.environ["TWILIO_NUMBER"]
+SMS_BROADCAST_TO_NUMBERS = [ 
+"+12395952814", # use the format +19735551234
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,6 +69,7 @@ INSTALLED_APPS = [
     'events.apps.EventsConfig',
     'tasks.apps.TasksConfig',
     'workouts.apps.WorkoutsConfig',
+    'broadcast.apps.BroadcastConfig',
 ]
 
 #locking down our permissions
