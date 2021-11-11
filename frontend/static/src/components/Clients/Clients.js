@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 
 
 
+
+
 function Clients(props) {
     const {filter} = useParams();
     
@@ -35,7 +37,6 @@ function Clients(props) {
             <p>PT Coach: {client.coach_name}</p>
             <button type='button' className='edit-client'>Edit</button>
         </div>
-    
         )
         
     

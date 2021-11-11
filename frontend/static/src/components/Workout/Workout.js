@@ -2,8 +2,9 @@ import { withRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { Modal, Button, Form } from 'react-bootstrap';
-import Sessions from './../Workout/Sessions'
-import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa'
+import Sessions from './../Workout/Sessions';
+import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa';
+import { format } from 'date-fns';
 
 
 
@@ -41,7 +42,7 @@ function WorkoutDetail(props) {
                 :
                 <>
                     
-                    <h5>{props.workout.date}</h5>
+                    <h5 className="workout-date">{format(new Date(props.workout.date), 'PPPP')}</h5>
                     <article>{props.workout.text}</article>
                     <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>
                    

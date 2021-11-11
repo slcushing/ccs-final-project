@@ -20,6 +20,8 @@ class EventListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         # type
         queryset = Event.objects.all()
+        # import pdb 
+        # pdb.set_trace()
         type = self.request.query_params.get('type')
         if type == 'community':
             queryset = queryset.filter(gymEvent=True)

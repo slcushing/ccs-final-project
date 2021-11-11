@@ -8,7 +8,7 @@ function DashboardHeader(props) {
     
     return (
         <>
-        <header className="dash-header">Welcome {props.username}!  Today is {formattedDate} </header>
+        <header className="dash-header bg-dark">Welcome {props.username}!  Today is {formattedDate} </header>
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark' id='dash-header'>
             <div className='container d-flex justify-content-center'>
                 <ul className='navbar-nav' id='dash-nav'>
