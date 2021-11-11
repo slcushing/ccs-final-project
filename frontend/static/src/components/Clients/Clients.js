@@ -33,7 +33,7 @@ function Clients(props) {
             <p>Primary email: {client.email}</p>
             <p>Client Notes: {client.details}</p>
             <p>PT Coach: {client.coach_name}</p>
-
+            <button type='button' className='edit-client'>Edit</button>
         </div>
     
         )
