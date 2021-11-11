@@ -86,6 +86,7 @@
 .daily-cal {
   width: 70%;
   margin: 1em;
+  font-family: 'Abel';
 }
 
 .task-container {
@@ -97,7 +98,8 @@
   font-family: 'Abel', sans-serif;
 }
 
-.edit-task-btn {
+.edit-task-btn,
+.edit-workout-btn {
   font-family: 'Abel', sans-serif;
   background-color: white;
   font-weight: bold;
@@ -105,21 +107,25 @@
   margin-right: 4px;
 }
 
-.edit-task-btn:hover {
+.edit-task-btn:hover,
+.edit-workout-btn:hover {
   color:#f9010e;
 }
 
-.delete-task-btn {
+.delete-task-btn,
+.delete-workout-btn {
   background-color: white;
   color: black;
   border:none;
 }
 
-.delete-task-btn:hover {
+.delete-task-btn:hover,
+.delete-workout-btn:hover {
   color:#f9010e;
 }
 
-.add-task-btn {
+.add-task-btn,
+.add-workout-btn {
   border: black solid 1px;
   background-color: white;
   color: black;
@@ -127,7 +133,8 @@
 
 }
 
-.add-task-btn:hover {
+.add-task-btn:hover,
+.add-workout-btn:hover {
   background-color: #f9010e;
   border-radius: 5%;
 }
@@ -176,22 +183,53 @@ h2 {
   object-fit:contain;
   max-height: 100px;
   max-width: 100px;
+  margin-bottom: 10px;
 }
 
 .client-profile {
   border: solid black 1px;
   margin: 1em;
-  padding: 5px;
+  padding: 1em;
+  width: 60%;
   font-family: 'Source Code Pro', monospace;
+  font-weight: bolder;
 }
 
 .client-container { 
   margin: 2em;
-  width:100%;
 }
 
 .client-list {
-  width: 60%;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.client-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.client-nav a {
+  text-decoration: none;
+  color:black;
+  display: flex;
+  justify-content: center;
+  border: black solid 1px;
+  width: 25%;
+  margin: 5px;
+  padding: 5px;
+  font-family: 'Source Code Pro';
+  font-weight: bolder;
+}
+
+.client-nav a:hover,
+.client-nav a:focus {
+  background-color:black;
+  color: white;
+  font-weight: bolder;
 }
 
 .workout-container {
@@ -199,11 +237,27 @@ h2 {
   margin-top: 2em;
 }
 
+.workout-container h3{
+  font-family: 'Abel';
+  font-weight: bold;
+}
+
 .workout-list {
   margin: 1em;
-  width:65%;
+  width: 55%;
 }
 
 .class-list {
   margin: 1em;
+}
+
+.workout {
+  border: solid black 1px;
+  margin-bottom: 1em;
+  padding:10px;
+  font-family: 'Abel';
+}
+
+.session-info {
+  font-family: 'Abel';
 }

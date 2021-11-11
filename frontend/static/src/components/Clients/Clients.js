@@ -7,7 +7,7 @@ function Clients(props) {
     const {filter} = useParams();
     
     const [clients, setClients] = useState([]);
-    const [selection, setSelection] = useState(filter);
+    // const [selection, setSelection] = useState(filter);
 
     useEffect (() => {
         async function getClients() {
@@ -40,10 +40,12 @@ function Clients(props) {
         
     
     return (
-        <div className='client-container d-flex justify-content-center'>
-            <section className='client-list'>
+        <div className='client-container'>
+            <nav className='client-nav'>
                 <NavLink to='/clients/'>All Members</NavLink>
                 <NavLink to='/clients/pt/'>Personal Training Clients</NavLink>
+            </nav>
+            <section className='client-list'>
                 {ClientHTML}
             </section>
         </div>

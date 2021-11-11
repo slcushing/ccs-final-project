@@ -1,8 +1,9 @@
 import { withRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import {Modal, Button, Form} from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 import Sessions from './../Workout/Sessions'
+import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa'
 
 
 
@@ -42,12 +43,12 @@ function WorkoutDetail(props) {
                     
                     <h5>{props.workout.date}</h5>
                     <article>{props.workout.text}</article>
-                    <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}>edit</button>
+                    <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>
                    
                 </>
         
             }
-                <button type='button' className='delete-workout-bt' value={editWorkout.id} onClick={props.handleDelete}>Delete</button>
+                <button type='button' className='delete-workout-btn' value={editWorkout.id} onClick={props.handleDelete}><FaTrash/></button>
         </div>
     )
 
@@ -101,7 +102,7 @@ function Workouts(props) {
                 'X-CSRFToken' : Cookies.get('csrftoken'),
             },
         };
-        const response = await fetch(`/api_v1/workouts/${event.target.value}/`, options);
+        const response = await fetch(`/api_v1/workouts/${event.currentTarget.value}/`, options);
         if(!response.ok) {
             console.log(response);
         } else {
@@ -163,7 +164,7 @@ function Workouts(props) {
                 <section className='workout-list'>
                     <h3>Adult Performance Workouts</h3>
                     {WorkoutListHTML}
-                    <button type='button' className='add-workout-btn' onClick={handleAdd}>+</button>
+                    <button type='button' className='add-workout-btn' onClick={handleAdd}>Add Workout <FaRegPlusSquare/></button>
                 </section>
                 
                 <section className='class-list'>
