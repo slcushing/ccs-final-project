@@ -11,6 +11,7 @@ import DashboardHeader from './../Header/DashboardHeader';
 import CommunityCalendar from './../Calendar/CommunityCalendar';
 import Workout from './../Workout/Workout';
 import Clients from './../Clients/Clients';
+import ProfileForm from './../Profile/Profile';
 import Cookies from 'js-cookie';
 
 
@@ -77,6 +78,9 @@ function App() {
         <Route path='/login'>
           <LoginForm isAuth={isAuth} isAdmin={isAdmin} setUser={setUser}/>
         </Route>
+        <PrivateRoute path='/profile' isAuth={isAuth}>
+          <ProfileForm/>
+        </PrivateRoute>
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
           <Dashboard/>
         </PrivateRoute>

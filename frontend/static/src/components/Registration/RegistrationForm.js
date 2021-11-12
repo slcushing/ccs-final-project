@@ -48,7 +48,7 @@ function RegistrationForm(props) {
                 props.setUser((prevState) => ({
                     ...prevState, isAuth: true,
                 }));
-                props.history.push('/');
+                props.history.push('/profile');
             }
         }
     }
