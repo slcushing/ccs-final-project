@@ -71,16 +71,17 @@ function Sessions(props) {
     console.log(days);
     const sessionsHTML = days.map(day => {
         const details = sessions[day].map(session => (
-            <>
-            <div>{session.title}</div>
-            <div>{session.start}</div>
-            <div>{session.end}</div>
-            </>
+            <div className="session">
+                <p id='session-title'>{session.title}</p>
+                <time>{format(new Date(session.start), 'p')} - </time>
+                <time>{format(new Date(session.end), 'p')}</time>
+                <p>Attendees:</p>
+            </div>
         ));
 
         return (
             <>
-            <h2>{day}</h2>
+            <h5 className='session-day'>{day}:</h5>
             {details}
             </>
         )
@@ -101,7 +102,6 @@ function Sessions(props) {
     
     return(
         <>
-        hey
         {sessionsHTML}
         </>
     )

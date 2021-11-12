@@ -15,6 +15,22 @@
   max-height: 110px;
 }
 
+.logout {
+  all: unset;
+  /* border: solid black 1px; */
+  padding: 5px 15px;
+  font-family: 'Abel';
+  font-weight: bolder;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+}
+
+.logout:hover {
+  background-color: #f9010e;
+  color: black;
+}
+
 .landing-body {
   display:flex;
 }
@@ -55,7 +71,6 @@
 .landing-body a:hover {
   background-color: #f9010e;
   border: solid #f9010e 1px;
-  /* font-family: 'Abel', sans-serif; */
 }
 
 .landing-atag {
@@ -250,9 +265,18 @@ h2 {
   margin-top: 2em;
 }
 
-.workout-container h3{
+.workout-list h3{
   font-family: 'Abel';
   font-weight: bold;
+}
+
+.class-list h3{
+  position: sticky;
+  top:0;
+  font-family: 'Abel';
+  font-weight: bold;
+  background-color: white;
+
 }
 
 .workout-list {
@@ -265,6 +289,8 @@ h2 {
 
 .class-list {
   margin: 1em;
+  height: 500px;
+  overflow: scroll;
 }
 
 .workout {
@@ -279,6 +305,25 @@ h2 {
   font-weight: bolder;
 }
 
-.session-info {
+.session {
   font-family: 'Abel';
+}
+
+.session p{
+  margin-bottom: 0;
+}
+
+.session time{
+  font-style: italic;
+}
+
+.session-day {
+  font-family: 'Source Code Pro';
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+#session-title {
+  font-weight: bold;
 }

@@ -33,11 +33,13 @@ function WorkoutDetail(props) {
                 isEditing 
                 ? 
                 <>
-                    <label htmlFor="date">Date</label>
-                    <input id="date" type='date' name='date' value={editWorkout.date} min='2021-11-01' onChange={handleChange}></input>
-                    <label htmlFor="text">Text</label> 
-                    <input id="text" type='text' as='textarea' rows={10} name='text' value={editWorkout.text} onChange={handleChange}/>
-                    <button type='button' className='save-workout-btn' onClick={handleUpdate}>save</button> 
+                    <div>
+                        <label htmlFor="date">Date</label>
+                        <input id="date" type='date' name='date' value={editWorkout.date} min='2021-11-01' onChange={handleChange}></input>
+                        <label htmlFor="text">Text</label> 
+                        <input type='textarea' name='text' id="text" rows={10} value={editWorkout.text} onChange={handleChange}/>
+                        <button type='button' className='save-workout-btn' onClick={handleUpdate}>save</button>
+                    </div>
                 </>
                 :
                 <>
