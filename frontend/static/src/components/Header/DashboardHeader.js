@@ -31,10 +31,13 @@ function DashboardHeader(props) {
                     {!props.isAdmin && (
                         <>
                             <li className='nav-item'>
-                                    <NavLink to='/calendar'>Event Calendar</NavLink> 
+                                <NavLink to='/calendar'>Event Calendar</NavLink> 
                             </li>
                             <li className='nav-item'>
                                 <NavLink to='/workouts'>Workouts + Group Training</NavLink>
+                            </li>
+                            <li className='nav-item'>
+                                <NavLink to='/manage'>Manage Account</NavLink>
                             </li>
                         </>
                     )}

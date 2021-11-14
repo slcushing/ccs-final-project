@@ -7,8 +7,9 @@ import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import {Modal, Button, Form} from 'react-bootstrap'
+import {Modal, Button, Form, ModalBody} from 'react-bootstrap'
 import Cookies from 'js-cookie';
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const defaultEvent = {
     title:'',
@@ -32,7 +33,7 @@ const localizer = dateFnsLocalizer({
 });
 
 
-function CommunityCalendar() {
+function CommunityCalendar(props) {
     const [events, setEvents] = useState();
     const [event, setEvent] = useState(defaultEvent);
     const [show, setShow] = useState(false);
@@ -185,7 +186,7 @@ function CommunityCalendar() {
     }
 
     if(!events) {
-        return <div>loading</div>
+        return <div>loading SPINNER</div>
     }
     return (
         <>
@@ -206,36 +207,57 @@ function CommunityCalendar() {
                     style={{ height: 700 }}
                     />
             </div>
+            
+            {props.isAdmin && (
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add Event</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Group>
+                            <Form.Label>Title: </Form.Label><Form.Control type='text' onChange={handleChange} name="title" value={event.title} placeholder='Event Title'></Form.Control>
+                            <Form.Label>Start: </Form.Label><Form.Control name="start" value={event.start}></Form.Control>
+                            <Form.Label>End: </Form.Label><Form.Control name="end" value={event.end}></Form.Control>
+                            <Form.Label>Details: </Form.Label><Form.Control type='text' onChange={handleChange} name="details" value={event.details} placeholder='Event details...'></Form.Control>
+                            <Form.Check type='checkbox' label='All Day' name="allDay" checked={event.allDay} onChange={handleChange}></Form.Check>
+                            <Form.Check type='checkbox' label='Community Event' name="gymEvent" checked={event.gymEvent} onChange={handleChange}></Form.Check>
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {event.id
+                        ? 
+                        <>
+                            <Button type='button' variant='info' onClick={handleCancel}>Cancel Event</Button>
+                            <Button type='button' variant='warning' onClick={handleUpdate} >Update</Button>
+                            <Button type='button' variant='dark' onClick={handleDelete}>Delete</Button>
+                        </>
+                        :
+                            <Button type='button' variant='success' onClick={handleSubmit}>Save</Button>
+                        }
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Event</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form.Group>
-                        <Form.Label>Title: </Form.Label><Form.Control type='text' onChange={handleChange} name="title" value={event.title} placeholder='Event Title'></Form.Control>
-                        <Form.Label>Start: </Form.Label><Form.Control name="start" value={event.start}></Form.Control>
-                        <Form.Label>End: </Form.Label><Form.Control name="end" value={event.end}></Form.Control>
-                        <Form.Label>Details: </Form.Label><Form.Control type='text' onChange={handleChange} name="details" value={event.details} placeholder='Event details...'></Form.Control>
-                        <Form.Check type='checkbox' label='All Day' name="allDay" checked={event.allDay} onChange={handleChange}></Form.Check>
-                        <Form.Check type='checkbox' label='Community Event' name="gymEvent" checked={event.gymEvent} onChange={handleChange}></Form.Check>
-                    </Form.Group>
-                </Modal.Body>
-                <Modal.Footer>
-                    {event.id
-                    ? 
-                    <>
-                        <Button type='button' variant='info' onClick={handleCancel}>Cancel Event</Button>
-                        <Button type='button' variant='warning' onClick={handleUpdate} >Update</Button>
-                        <Button type='button' variant='dark' onClick={handleDelete}>Delete</Button>
-                    </>
-                    :
-                        <Button type='button' variant='success' onClick={handleSubmit}>Save</Button>
-                    }
+                        <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+            )}
 
-                    <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
-                </Modal.Footer>
-            </Modal>
+            {!props.isAdmin && (
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Event Details</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {event.details}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button type='button' variant='success'>Register</Button>
+                        <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
+
+
+
+            )}
 
 
         </>

@@ -63,9 +63,7 @@ function App() {
   const isAuth = user?.isAuth;
   const isAdmin = user?.isAdmin;
   const username = user?.username;
-  console.log('user', user);
-  console.log(isAdmin);
-  console.log(username);
+  
 
   return (
     <>
@@ -82,16 +80,16 @@ function App() {
           <ProfileForm/>
         </PrivateRoute>
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
-          <Dashboard/>
+          <Dashboard isAuth={isAuth} isAdmin={isAdmin}/>
         </PrivateRoute>
         <PrivateRoute path='/clients/:filter?' isAuth={isAuth} isAdmin={isAdmin}>
-          <Clients/>
+          <Clients isAuth={isAuth} isAdmin={isAdmin}/>
         </PrivateRoute>
         <PrivateRoute path='/calendar' isAuth={isAuth} isAdmin={isAdmin}>
-          <CommunityCalendar/>
+          <CommunityCalendar isAuth={isAuth} isAdmin={isAdmin}/>
         </PrivateRoute>
         <PrivateRoute path='/workouts' isAuth={isAuth} isAdmin={isAdmin}>
-          <Workout/>
+          <Workout isAuth={isAuth} isAdmin={isAdmin}/>
         </PrivateRoute>
         <Route path='/' exact>
           <LandingPage isAuth={isAuth} isAdmin={isAdmin}/>

@@ -182,14 +182,14 @@ function DashCalendar() {
             ...event, 
             title: event.title,
             start: event.start,
-            end:event.end,
+            end: event.end,
             details: event.details,
         });
         setShow(true);
     }
     
     if(!events) {
-        return <div>loading</div>
+        return <div>loading spinner</div>
     }
     return (
         <>

@@ -35,9 +35,12 @@ function ProfileForm(props) {
         console.warn(error);
     }
 
-    async function handleSubmit(event){
+    async function handleSubmit(event, props){
         event.preventDefault();
         const formData = new FormData();
+        formData.append('first_name', props.user.first_name);
+        formData.append('last_name', props.user.last_name);
+        formData.append('phone_number', profile.phone_number)
         formData.append('avatar', profile.avatar);
 
         const options = {
@@ -67,7 +70,7 @@ function ProfileForm(props) {
                     id='first_name'
                     placeholder='First Name'
                     required
-                    value={profile.first_name} 
+                    value={props.user.first_name} 
                     onChange={handleChange}
                 />
             </div>
@@ -79,7 +82,7 @@ function ProfileForm(props) {
                     id='last_name'
                     placeholder='Last Name' 
                     required
-                    value={profile.last_name} 
+                    value={props.user.last_name} 
                     onChange={handleChange}
                 />
             </div>

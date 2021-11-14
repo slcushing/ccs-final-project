@@ -19,7 +19,7 @@ class EventListAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         # type
-        queryset = Event.objects.all()
+        queryset = Event.objects.all().order_by('start')
         # import pdb 
         # pdb.set_trace()
         type = self.request.query_params.get('type')

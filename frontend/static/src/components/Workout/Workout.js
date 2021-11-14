@@ -5,6 +5,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import Sessions from './../Workout/Sessions';
 import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa';
 import { format } from 'date-fns';
+import { parseISOWithOptions } from 'date-fns/fp';
 
 
 
@@ -30,7 +31,7 @@ function WorkoutDetail(props) {
     return (
         <div className='workout'>
             {
-                isEditing 
+                isEditing
                 ? 
                 <>
                     <div>
@@ -157,43 +158,46 @@ function Workouts(props) {
             key={workout.id}
             workout={workout}
             handleDelete={handleDelete}
-            handleUpdate={handleUpdate}/>
+            handleUpdate={handleUpdate}
+        />
         )
 
     return(
-        <>
+        <>  
             <div className='workout-container'>
                 
                 <section className='workout-list'>
                     <h3>Adult Performance Workouts</h3>
                     {WorkoutListHTML}
-                    <button type='button' className='add-workout-btn' onClick={handleAdd}>Add Workout <FaRegPlusSquare/></button>
+                    {props.isAdmin && (
+                        <button type='button' className='add-workout-btn' onClick={handleAdd}>Add Workout <FaRegPlusSquare/></button>
+                    )}
                 </section>
                 
                 <section className='class-list'>
                     <h3>Adult Performance Group Training</h3>
-                    <Sessions/>
+                    <Sessions isAuth={props.isAuth}/>
                 </section>
             </div>
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add New Workout</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form.Group>
-                        <Form.Label>Date:</Form.Label>
-                        <Form.Control type='date' name='workout-date' value={date} min={date} onChange={(e) => setDate(e.target.value)}></Form.Control>
-                        <Form.Label>Workout:</Form.Label>
-                        <Form.Control type='text' as='textarea' rows={10} onChange={(e) => setText(e.target.value)} name='text' value={text}>
-                        </Form.Control>
-                    </Form.Group>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button type='button' variant='success' onClick={handleSubmit}>Add</Button>
-                    <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
-                </Modal.Footer>
-            </Modal>        
+ 
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add New Workout</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Group>
+                            <Form.Label>Date:</Form.Label>
+                            <Form.Control type='date' name='workout-date' value={date} min={date} onChange={(e) => setDate(e.target.value)}></Form.Control>
+                            <Form.Label>Workout:</Form.Label>
+                            <Form.Control type='text' as='textarea' rows={10} onChange={(e) => setText(e.target.value)} name='text' value={text}>
+                            </Form.Control>
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button type='button' variant='success' onClick={handleSubmit}>Add</Button>
+                        <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
+                    </Modal.Footer>
+                </Modal>    
         </>
     )
 }

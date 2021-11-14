@@ -75,7 +75,7 @@ function Sessions(props) {
                 <p id='session-title'>{session.title}</p>
                 <time>{format(new Date(session.start), 'p')} - </time>
                 <time>{format(new Date(session.end), 'p')}</time>
-                <p>Attendees:</p>
+                {props.isAuth && <button>Here</button>}
             </div>
         ));
 

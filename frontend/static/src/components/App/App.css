@@ -262,7 +262,11 @@ h2 {
 
 .workout-container {
   display: flex;
-  margin-top: 2em;
+  justify-content: space-around;
+  height: 100vh;
+  padding-top: 2em;
+  background: url(/Users/stephaniecushing/Documents/ccs/homework/ccs-final-project/frontend/static/src/components/images/kpf_empty.jpeg);
+  background-size: 100% no-repeat;
 }
 
 .workout-list h3{
@@ -276,21 +280,25 @@ h2 {
   font-family: 'Abel';
   font-weight: bold;
   background-color: white;
-
+  opacity: 90%;
 }
 
 .workout-list {
   margin: 1em;
-  width: 55%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  opacity: 90%;
 }
 
 .class-list {
   margin: 1em;
-  height: 500px;
+  height: 700px;
   overflow: scroll;
+  background-color: white;
+  opacity: 90%;
+  padding: 0 2em 2em 2em;
 }
 
 .workout {
@@ -322,6 +330,7 @@ h2 {
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 0;
+  border-bottom: solid black 2px;
 }
 
 #session-title {
