@@ -8,7 +8,7 @@ function ProfileForm(props) {
         last_name: '',
         phone_number: '',
         avatar: null,
-    })
+    });
 
     const[preview, setPreview] = useState('');
 
@@ -91,7 +91,8 @@ function ProfileForm(props) {
                 <input 
                     type='tel' 
                     name='phone_number'
-                    id='phone_number' 
+                    id='phone_number'
+                    placeholder='+15558675309'
                     required
                     value={profile.phone_number} 
                     onChange={handleChange}

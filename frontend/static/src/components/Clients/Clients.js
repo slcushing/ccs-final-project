@@ -105,6 +105,8 @@ function ClientDetail(props) {
 function Clients(props) {
     const {filter} = useParams();
     const [clients, setClients] = useState([]);
+    const [searchClients, setSearchClients] = useState('');
+    const [filteredResults, setFilteredResults] = useState();
 
     useEffect (() => {
         async function getClients() {
@@ -143,9 +145,9 @@ function Clients(props) {
         //     setClients(updatedClients);
         // }
     }
-
-
-    const ClientHTML = clients
+    // console.log({filteredResults});
+    const clientList = filteredResults || clients;
+    const ClientHTML = clientList
     .filter(client => filter === 'pt' ? client.is_client : client)
     .map(client => 
         <ClientDetail
@@ -154,6 +156,24 @@ function Clients(props) {
             handleUpdate={handleUpdate}
         />
         )
+
+    const searchItems = (event) => {
+
+        setSearchClients(event.target.value);
+
+
+
+
+        if (searchClients !== '') {
+            const filteredData = clients.filter((client) => {
+                return Object.values(client).join('').toLowerCase().includes(searchClients.toLowerCase())
+            });
+            setFilteredResults(filteredData)
+        } else {
+            setFilteredResults(clients)
+        }
+    }
+
         
     
     return (
@@ -162,10 +182,12 @@ function Clients(props) {
                 <NavLink to='/clients/'>All Members</NavLink>
                 <NavLink to='/clients/pt/'>Personal Training Clients</NavLink>
             </nav>
-            <input type='text' name='search' id='search' placeholder='Search Clients Here...'></input>
-            <section className='client-list'>
-                {ClientHTML}
-            </section>
+            <input className='client-search' type='text' name='search' id='search' placeholder='Search Here...' onChange={searchItems}></input>
+       
+                <section className='client-list'>
+                    {ClientHTML}
+                </section>
+        
         </div>
     )
 }
