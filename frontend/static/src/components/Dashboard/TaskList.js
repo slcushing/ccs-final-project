@@ -94,7 +94,7 @@ function TaskList(props) {
             console.log(response);
         } else {
             let updatedTasks = [...tasks];
-            const index = updatedTasks.findIndex(e => e.id === id);
+            const index = updatedTasks.findIndex(e => e.id == id);
             updatedTasks.splice(index, 1);
             setTasks(updatedTasks);
         }

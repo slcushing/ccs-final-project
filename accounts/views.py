@@ -1,6 +1,7 @@
 from rest_auth.serializers import UserDetailsSerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
+from django.shortcuts import get_object_or_404
 
 
 from .models import Profile, Note
@@ -25,7 +26,7 @@ class ProfileListAPIView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        return Profile.objects.filter(user__is_staff=False)
+        return Profile.objects.filter(user__is_staff=False).order_by('user__last_name')
         
 
 class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -35,6 +36,14 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 class NoteListAPIView(generics.ListCreateAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
+
+    def perform_create(self, serializer):
+        # import pdb 
+        # pdb.set_trace()
+        id = self.request.data.get('profile')
+        profile = get_object_or_404(Profile, pk=id)
+
+        serializer.save(user=self.request.user,profile=profile)
 
 class NoteDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Note.objects.all()

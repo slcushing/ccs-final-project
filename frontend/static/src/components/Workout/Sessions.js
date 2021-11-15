@@ -75,7 +75,8 @@ function Sessions(props) {
                 {/* <p id='session-title'>{session.title}</p> */}
                 <time>{format(new Date(session.start), 'p')} - </time>
                 <time>{format(new Date(session.end), 'p')}</time>
-                {props.isAuth && <button>Register</button>}
+                {props.isAuth && !props.isAdmin && <button>Register</button>}
+                {props.isAdmin && <button>Attendees</button>}
             </div>
         ));
 

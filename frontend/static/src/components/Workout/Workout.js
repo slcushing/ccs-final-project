@@ -5,7 +5,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import Sessions from './../Workout/Sessions';
 import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa';
 import { format } from 'date-fns';
-import { parseISOWithOptions } from 'date-fns/fp';
+
 
 
 
@@ -45,7 +45,7 @@ function WorkoutDetail(props) {
                 :
                 <>
                     
-                    <h5 className="workout-date">{format(new Date(props.workout.date), 'PPPP')}</h5>
+                    <h5 className="workout-date">{format(new Date(props.workout.date + 'T08:00:00'), 'PPPP')}</h5>
                     <article>{props.workout.text}</article>
                     <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>
                    
@@ -100,18 +100,19 @@ function Workouts(props) {
     }
 
     const handleDelete = async (event) => {
+        const id = event.currentTarget.value;
         const options = {
             method: 'DELETE',
             headers: {
                 'X-CSRFToken' : Cookies.get('csrftoken'),
             },
         };
-        const response = await fetch(`/api_v1/workouts/${event.currentTarget.value}/`, options);
+        const response = await fetch(`/api_v1/workouts/${id}/`, options);
         if(!response.ok) {
             console.log(response);
         } else {
             let updatedWorkouts = [...workouts];
-            const index = updatedWorkouts.findIndex(e => e.id == event.target.value);
+            const index = updatedWorkouts.findIndex(e => e.id == id);
             updatedWorkouts.splice(index, 1);
             setWorkouts(updatedWorkouts);
         }

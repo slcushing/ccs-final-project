@@ -2,6 +2,7 @@ import { withRouter, useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { ModalBody } from 'react-bootstrap';
+import Workout from '../Workout/Workout';
 
 
 function ClientDetail(props) {
@@ -27,7 +28,7 @@ function ClientDetail(props) {
                 body: JSON.stringify(coachNote)
             };
 
-            const response = await fetch(`/api_v1/accounts/profiles/${props.client.id}/`, options);
+            const response = await fetch(`/api_v1/accounts/notes/${coachNote.id}/`, options);
             if (!response.ok) {
                 console.log(response)
             } else {
@@ -44,15 +45,18 @@ function ClientDetail(props) {
                     'Content-Type' : 'application/json',
                     'X-CSRFToken': Cookies.get('csrftoken'),
                 },
-                body: JSON.stringify({data})
+                body: JSON.stringify({
+                    ...coachNote, 
+                    profile: props.client.id
+                })
             };
 
-            const response = await fetch(`/api_v1/accounts/profiles/${props.client.id}/`, options);
+            const response = await fetch(`/api_v1/accounts/notes/`, options);
             if(!response.ok) {
                 console.log(response)
             } else {
                 const data = await response.json();
-                setCoachNote([...coachNote, data])
+                setCoachNote(data)
             }
             // make a post request to create note
             // alert('POST request here');
@@ -158,6 +162,7 @@ function Clients(props) {
                 <NavLink to='/clients/'>All Members</NavLink>
                 <NavLink to='/clients/pt/'>Personal Training Clients</NavLink>
             </nav>
+            <input type='text' name='search' id='search' placeholder='Search Clients Here...'></input>
             <section className='client-list'>
                 {ClientHTML}
             </section>

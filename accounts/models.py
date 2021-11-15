@@ -21,7 +21,7 @@ class Profile(models.Model):
 
 class Note(models.Model):
     text = models.TextField()
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="notes")
 
     def __str__(self):

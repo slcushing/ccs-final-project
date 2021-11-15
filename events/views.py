@@ -19,7 +19,7 @@ class EventListAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         # type
-        queryset = Event.objects.all().order_by('start')
+        queryset = Event.objects.all()
         # import pdb 
         # pdb.set_trace()
         type = self.request.query_params.get('type')
@@ -29,7 +29,7 @@ class EventListAPIView(generics.ListCreateAPIView):
             queryset = queryset.filter(owner=self.request.user)
         if type == 'session':
             queryset = queryset.filter(session=True)
-        return queryset
+        return queryset.order_by('start')
 
 class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
