@@ -2,7 +2,7 @@ from rest_auth.models import TokenModel
 from rest_framework import serializers
 from rest_auth.serializers import UserDetailsSerializer, TokenSerializer
 from rest_auth.models import TokenModel
-from .models import Profile
+from .models import Profile, Note
 
 
 class UserDetailsSerializer(UserDetailsSerializer):
@@ -15,6 +15,19 @@ class TokenSerializer(TokenSerializer):
     class Meta(TokenSerializer.Meta):
         fields = ('key', 'user',)
 
+class NoteSerializer(serializers.ModelSerializer):
+    is_editable = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Note
+        exclude = ('profile',)
+
+    def get_is_editable(self, instance):
+        # import pdb 
+        # pdb.set_trace()
+        request = self.context.get('request')
+        # return request.user.is_staff or instance.user == request.user
+        return instance.user == request.user
 
 class ProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.PrimaryKeyRelatedField(read_only=True, source="user.first_name")
@@ -22,6 +35,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     email = serializers.PrimaryKeyRelatedField(read_only=True, source="user.email")
     coach_name = serializers.PrimaryKeyRelatedField(read_only=True, source='pt_coach.username')
     is_client = serializers.SerializerMethodField()
+    notes = NoteSerializer(many=True, read_only=True)
     
 
     class Meta:
@@ -31,4 +45,12 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_is_client(self, instance):
         request = self.context.get('request')
         return instance.pt_coach == request.user
+
+    # def create(self, validated_data):
+    #     import pdb 
+    #     pdb.set_trace()
+        # user = self.context.get('request').user 
+        # user.first_name = self.context.get('request').data['first_name']
+        # user.last_name = self.context.get('request').data['last_name']
+        # user.save()
 

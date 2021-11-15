@@ -11,7 +11,6 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     phone_number = PhoneNumberField(null=True)
-    details = models.TextField(blank=True)
     personalTraining = models.BooleanField(default=False)
     pt_coach = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pt_coach', blank=True, null=True)
     avatar = models.ImageField(upload_to='profiles/', null=True)
@@ -19,3 +18,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Note(models.Model):
+    text = models.TextField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="notes")
+
+    def __str__(self):
+        return self.profile.user.username

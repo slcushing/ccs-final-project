@@ -77,7 +77,7 @@ function App() {
           <LoginForm isAuth={isAuth} isAdmin={isAdmin} setUser={setUser}/>
         </Route>
         <PrivateRoute path='/profile' isAuth={isAuth}>
-          <ProfileForm/>
+          <ProfileForm isAuth={isAuth}/>
         </PrivateRoute>
         <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
           <Dashboard isAuth={isAuth} isAdmin={isAdmin}/>

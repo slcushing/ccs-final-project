@@ -1,7 +1,39 @@
 import { withRouter, useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+// function ClientDetail(props) {
+//     const [isEditing, setIsEditing] = useState(false);
+//     const [editClient, setEditClient] = useState(props.profile, props.user);
 
+
+//     const handleChange = (event) => {
+//         const {name, value} = event.target;
+//         setEditClient(prevState => ({
+//             ...prevState,
+//             [name]: value,
+//         }));
+//     }
+
+//     const handleUpdate = (event) => {
+//         props.handleUpdate(editClient);
+//         setIsEditing(false);
+//     }
+
+//     return (
+//         <div className='client'>
+//             {
+//                 isEditing
+//                 ?
+//                 <>
+//                     <div>
+//                         <label htmlFor='name'>Details:</label>
+//                         <input id='name' type='text' name='name' value={editClient.name} onChange={handleChange}/>
+
+//                 </>
+//             }
+//         </div>
+//     )
+// }
 
 
 
