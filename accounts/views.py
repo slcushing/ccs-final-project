@@ -3,8 +3,8 @@ from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
 
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import Profile, Note
+from .serializers import NoteSerializer, ProfileSerializer
 from .permissions import ProfileListCreateUserPermissions
 
 # Create your views here.
@@ -27,11 +27,18 @@ class ProfileListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Profile.objects.filter(user__is_staff=False)
         
-    
 
-# class AccountDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Profile.objects.all()
-#     serializer_class = AccountSerializer
+class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+class NoteListAPIView(generics.ListCreateAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
+
+class NoteDetailAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
 
 
 #classyclass django

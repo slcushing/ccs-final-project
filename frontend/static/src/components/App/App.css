@@ -368,3 +368,15 @@ h2 {
 #session-title {
   font-weight: bold;
 }
+
+
+
+
+
+
+input[type='text']:disabled {
+  border: none;
+  color: #000;
+  background: transparent;
+  font-weight: bolder;
+}

@@ -1,47 +1,106 @@
 import { withRouter, useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
-// function ClientDetail(props) {
-//     const [isEditing, setIsEditing] = useState(false);
-//     const [editClient, setEditClient] = useState(props.profile, props.user);
+import Cookies from 'js-cookie';
+import { ModalBody } from 'react-bootstrap';
 
 
-//     const handleChange = (event) => {
-//         const {name, value} = event.target;
-//         setEditClient(prevState => ({
-//             ...prevState,
-//             [name]: value,
-//         }));
-//     }
+function ClientDetail(props) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [coachNote, setCoachNote] = useState(props.client.notes.filter(note => note.is_editable)[0]); // an object or undefined
 
-//     const handleUpdate = (event) => {
-//         props.handleUpdate(editClient);
-//         setIsEditing(false);
-//     }
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setCoachNote((prevState) => ({...prevState, [name]: value}));
+    }   
 
-//     return (
-//         <div className='client'>
-//             {
-//                 isEditing
-//                 ?
-//                 <>
-//                     <div>
-//                         <label htmlFor='name'>Details:</label>
-//                         <input id='name' type='text' name='name' value={editClient.name} onChange={handleChange}/>
+    const handleSave = async (event) => {
 
-//                 </>
-//             }
-//         </div>
-//     )
-// }
+        let data;
+
+        if(coachNote.id) {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'X-CSRFToken' : Cookies.get('csrftoken'),
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify(coachNote)
+            };
+
+            const response = await fetch(`/api_v1/accounts/profiles/${props.client.id}/`, options);
+            if (!response.ok) {
+                console.log(response)
+            } else {
+                setCoachNote(coachNote)
+            }
+
+            // make a put request to udpate note
+            // alert('PUT request here!');
+           
+        } else {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                    'X-CSRFToken': Cookies.get('csrftoken'),
+                },
+                body: JSON.stringify({data})
+            };
+
+            const response = await fetch(`/api_v1/accounts/profiles/${props.client.id}/`, options);
+            if(!response.ok) {
+                console.log(response)
+            } else {
+                const data = await response.json();
+                setCoachNote([...coachNote, data])
+            }
+            // make a post request to create note
+            // alert('POST request here');
+
+            
+        }
+
+        props.handleUpdate(props.client.id, data);
+        
+    }
+
+    
+
+    return (
+        <div className='client'>
+            {
+               
+                <>
+                    <div key={props.client.id} className='client-profile'>
+                        <img className='client-photo' src={props.client.avatar} alt=''/>
+                        <p>{props.client.first_name} {props.client.last_name}</p>
+                        <p>Primary phone: {props.client.phone_number}</p>
+                        <p>Primary email: {props.client.email}</p>
+                        <p>Client note: {props.client.notes.filter(note => !note.is_editable)[0]?.text}</p>
+                        <input type="text" name="text" value={coachNote?.text} disabled={!isEditing} onChange={handleChange} />
+                       
+                        <p>PT Coach: {props.client.coach_name}</p>
+                        {isEditing 
+                        ?
+                        <button type='button' className='edit-note-btn' onClick={handleSave}>Save</button>
+                        :
+                        <button type='button' className='edit-note-btn' onClick={() => setIsEditing(true)}>Edit</button>
+                        }
+                        
+                    </div>
+
+                </>
+
+            }
+        </div>
+    )
+}
 
 
 
 function Clients(props) {
     const {filter} = useParams();
-    
     const [clients, setClients] = useState([]);
-    // const [selection, setSelection] = useState(filter);
 
     useEffect (() => {
         async function getClients() {
@@ -57,18 +116,39 @@ function Clients(props) {
         getClients();
     }, []);
 
+    const handleUpdate = async (clientID, coachNote) => {
+        console.log(clientID, coachNote);
+
+
+        // const options = {
+        //     method: 'PUT',
+        //     headers: {
+        //         'X-CSRFToken' : Cookies.get('csrftoken'),
+        //         'Content-Type' : 'application/json',
+        //     },
+        //     body: JSON.stringify(client)
+        // };
+
+        // const response = await fetch(`/api_v1/accounts/profiles/${client.id}/`, options);
+        // if(!response.ok) {
+        //     console.log(response)
+        // } else {
+        //     const updatedClients = [...clients];
+        //     const index = updatedClients.findIndex(e => e.id === client.id);
+        //     updatedClients[index] = client;
+        //     setClients(updatedClients);
+        // }
+    }
+
+
     const ClientHTML = clients
     .filter(client => filter === 'pt' ? client.is_client : client)
     .map(client => 
-        <div key={client.id} className='client-profile'>
-            <img className='client-photo' src={client.avatar} alt=''/>
-            <p>{client.first_name} {client.last_name}</p>
-            <p>Primary phone: {client.phone_number}</p>
-            <p>Primary email: {client.email}</p>
-            <p>Client Notes: {client.details}</p>
-            <p>PT Coach: {client.coach_name}</p>
-            <button type='button' className='edit-client'>Edit</button>
-        </div>
+        <ClientDetail
+            key={client.id}
+            client={client}
+            handleUpdate={handleUpdate}
+        />
         )
         
     
