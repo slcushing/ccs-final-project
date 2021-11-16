@@ -62,35 +62,37 @@ function LoginForm(props) {
     }
 
     return (
-        <form className='mt-3 col-4 offset-lg-4 login-form' onSubmit={handleSubmit}>
-            <div className='form-group text-left mb-3'>
-                <label htmlFor='username'>Username</label>
-                <input
-                    type='text'
-                    className='form-control'
-                    id='username'
-                    placeholder='Enter Username'
-                    onChange={handleInput}
-                    required
-                    name='username'
-                    value={user.username}
-                    />
-            </div>
-            <div className='form-group text-left mb-3'>
-                <label htmlFor='password'>Password</label>
-                <input
-                    type='password'
-                    className='form-control'
-                    id='password'
-                    placeholder='Enter Password'
-                    onChange={handleInput}
-                    required
-                    name='password'
-                    value={user.password}
-                    />
-            </div>
-            <button type='submit' className='btn btn-primary' id='login-button'>Login</button>
-        </form>
+        <div className="login-container">
+            <form className='col-4 offset-lg-4 login-form' onSubmit={handleSubmit}>
+                <div className='form-group text-left mb-3'>
+                    <label htmlFor='username'>Username</label>
+                    <input
+                        type='text'
+                        className='form-control'
+                        id='username'
+                        placeholder='Enter Username'
+                        onChange={handleInput}
+                        required
+                        name='username'
+                        value={user.username}
+                        />
+                </div>
+                <div className='form-group text-left mb-3'>
+                    <label htmlFor='password'>Password</label>
+                    <input
+                        type='password'
+                        className='form-control'
+                        id='password'
+                        placeholder='Enter Password'
+                        onChange={handleInput}
+                        required
+                        name='password'
+                        value={user.password}
+                        />
+                </div>
+                <button type='submit' className='btn btn-danger' id='login-button'>Login</button>
+            </form>
+        </div>
     )
 
 }

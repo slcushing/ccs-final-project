@@ -45,6 +45,7 @@ function ProfileEdit(props) {
         formData.append('first_name', profile.first_name);
         formData.append('last_name', profile.last_name);
         formData.append('phone_number', profile.phone_name);
+        formData.append('notes', profile.text);
 
         const options = {
             method: 'PUT',

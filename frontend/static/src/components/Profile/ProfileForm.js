@@ -1,16 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function ProfileForm(props) {
-    const [profile, setProfile] = useState({
-        first_name:'',
-        last_name: '',
-        phone_number: '',
-        avatar: null,
-    });
-
+    const [profile, setProfile] = useState();
     const[preview, setPreview] = useState('');
+
+    useEffect(() => {
+        async function getProfile() {
+            const response = await fetch(`/api_v1/accounts/profiles/`); //need to target the endpoint specific to the logged in user???
+            if(!response.ok) {
+                console.log(response);
+            } else {
+                const data = await response.json();
+                setProfile(data);
+            }
+        }
+        getProfile();
+    }, [])
+
+    
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -41,6 +50,7 @@ function ProfileForm(props) {
         formData.append('first_name', profile.first_name);
         formData.append('last_name', profile.last_name);
         formData.append('phone_number', profile.phone_number)
+        formData.append('notes', profile.text)
         formData.append('avatar', profile.avatar);
 
         const options = {
@@ -60,53 +70,70 @@ function ProfileForm(props) {
         }
     }
 
+    if(!profile) {
+        return <div>SPINNER THINGY</div>
+    }
+
     return (
-        <form className='mt-3 col-4 offset-lg-4 profile-form'onSubmit={handleSubmit}>
-            <div className='form-group text-left mb-3'>
-                <label htmlFor='first_name'>First Name: </label>
-                <input 
-                    type='text' 
-                    name='first_name'
-                    id='first_name'
-                    placeholder='First Name'
-                    required
-                    value={profile.first_name} 
-                    onChange={handleChange}
-                />
-            </div>
-            <div className='form-group text-left mb-3'>
-                <label htmlFor='last_name'>Last Name: </label>
-                <input 
-                    type='text' 
-                    name='last_name'
-                    id='last_name'
-                    placeholder='Last Name' 
-                    required
-                    value={profile.last_name} 
-                    onChange={handleChange}
-                />
-            </div>
-            <div className='form-group text-left mb-3'>
-                <label htmlFor='phone_number'>Primary Phone: </label>
-                <input 
-                    type='tel' 
-                    name='phone_number'
-                    id='phone_number'
-                    placeholder='+15558675309'
-                    required
-                    value={profile.phone_number} 
-                    onChange={handleChange}
-                />
-            </div>
-            <div className='form-group text-left mb-3'>
-                <input 
-                    type='file' 
-                    name='avatar' 
-                    onChange={handleImage}/>
-                {profile.avatar && <img src={preview} alt=''/>}
-            </div>
-            <button type='submit' className='btn btn-primary mt-3' id='profile-button'>Save Profile</button>
-        </form>
+        <div className='profile-form-container'>
+            <form className='col-4 offset-lg-4 profile-form'onSubmit={handleSubmit}>
+                <div className='form-group text-left mb-3'>
+                    <label htmlFor='first_name'>First Name: </label>
+                    <input 
+                        type='text' 
+                        name='first_name'
+                        id='first_name'
+                        placeholder='First Name'
+                        required
+                        value={profile.first_name} 
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='form-group text-left mb-3'>
+                    <label htmlFor='last_name'>Last Name: </label>
+                    <input 
+                        type='text' 
+                        name='last_name'
+                        id='last_name'
+                        placeholder='Last Name' 
+                        required
+                        value={profile.last_name} 
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='form-group text-left mb-3'>
+                    <label htmlFor='phone_number'>Primary Phone: </label>
+                    <input 
+                        type='tel' 
+                        name='phone_number'
+                        id='phone_number'
+                        placeholder='+15558675309'
+                        required
+                        value={profile.phone_number} 
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='form-group text-left mb-3'>
+                    <label htmlFor='notes'>Notes: </label>
+                    <input 
+                        type='textarea' 
+                        name='notes'
+                        id='notes'
+                        placeholder='Notes...'
+                        value={profile.text} 
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='form-group text-left mb-3'>
+                    <input 
+                        type='file' 
+                        name='avatar' 
+                        onChange={handleImage}/>
+                    {profile.avatar && <img src={preview} alt=''/>}
+                </div>
+                <button type='submit' className='btn btn-dark mt-3' id='profile-button'>Save Profile</button>
+            </form>
+        </div>
     )
 }
 

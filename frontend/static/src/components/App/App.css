@@ -20,6 +20,25 @@
   padding: 0;
 }
 
+.register-container,
+.login-container,
+.profile-form-container{
+  background:url(/Users/stephaniecushing/Documents/ccs/homework/ccs-final-project/frontend/static/src/components/images/kpf_dumbbells.jpeg) no-repeat;
+  height: 100vh;
+  background-size: 100%;
+}
+
+.register-form,
+.login-form,
+.profile-form{
+  background-color: white;
+  opacity: 90%;
+  padding: 1em;
+  font-family: 'Abel';
+  font-weight: bold;
+  
+}
+
 .logout {
   all: unset;
   /* border: solid black 1px; */
