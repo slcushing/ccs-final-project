@@ -37,7 +37,7 @@ function DashboardHeader(props) {
                                 <NavLink to='/workouts'>Workouts + Group Training</NavLink>
                             </li>
                             <li className='nav-item'>
-                                <NavLink to='/manage'>Manage Account</NavLink>
+                                <NavLink to='/profile'>Manage Profile</NavLink>
                             </li>
                         </>
                     )}

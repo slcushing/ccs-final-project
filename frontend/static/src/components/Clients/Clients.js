@@ -7,64 +7,35 @@ import Workout from '../Workout/Workout';
 
 function ClientDetail(props) {
     const [isEditing, setIsEditing] = useState(false);
-    const [coachNote, setCoachNote] = useState(props.client.notes.filter(note => note.is_editable)[0]); // an object or undefined
+    const [coachNote, setCoachNote] = useState(props.client.coach_notes); // an object or undefined
 
     const handleChange = (event) => {
-        const {name, value} = event.target;
-        setCoachNote((prevState) => ({...prevState, [name]: value}));
+        setCoachNote(event.target.value);
     }   
 
     const handleSave = async (event) => {
 
-        let data;
+        const options = {
+            method: 'PATCH',
+            headers: {
+                'X-CSRFToken' : Cookies.get('csrftoken'),
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({ coach_notes: coachNote }),
+        };
 
-        if(coachNote.id) {
-            const options = {
-                method: 'PUT',
-                headers: {
-                    'X-CSRFToken' : Cookies.get('csrftoken'),
-                    'Content-Type' : 'application/json',
-                },
-                body: JSON.stringify(coachNote)
-            };
-
-            const response = await fetch(`/api_v1/accounts/notes/${coachNote.id}/`, options);
-            if (!response.ok) {
-                console.log(response)
-            } else {
-                setCoachNote(coachNote)
-            }
-
-            // make a put request to udpate note
-            // alert('PUT request here!');
-           
+        const response = await fetch(`/api_v1/accounts/profiles/${props.client.id}/`, options);
+        if (!response.ok) {
+            console.log(response)
         } else {
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type' : 'application/json',
-                    'X-CSRFToken': Cookies.get('csrftoken'),
-                },
-                body: JSON.stringify({
-                    ...coachNote, 
-                    profile: props.client.id
-                })
-            };
+            const data = await response.json()
+            props.handleUpdate(props.client.id, data);
+            setCoachNote(coachNote);
+            setIsEditing(false);
 
-            const response = await fetch(`/api_v1/accounts/notes/`, options);
-            if(!response.ok) {
-                console.log(response)
-            } else {
-                const data = await response.json();
-                setCoachNote(data)
-            }
-            // make a post request to create note
-            // alert('POST request here');
-
-            
         }
 
-        props.handleUpdate(props.client.id, data);
+        
         
     }
 
@@ -80,8 +51,8 @@ function ClientDetail(props) {
                         <p>{props.client.first_name} {props.client.last_name}</p>
                         <p>Primary phone: {props.client.phone_number}</p>
                         <p>Primary email: {props.client.email}</p>
-                        <p>Client note: {props.client.notes.filter(note => !note.is_editable)[0]?.text}</p>
-                        <input type="text" name="text" value={coachNote?.text} disabled={!isEditing} onChange={handleChange} />
+                        <p>Client note: {props.client.member_notes}</p>
+                        <input type="text" name="coach_notes" value={coachNote} disabled={!isEditing} onChange={handleChange} />
                        
                         <p>PT Coach: {props.client.coach_name}</p>
                         {isEditing 

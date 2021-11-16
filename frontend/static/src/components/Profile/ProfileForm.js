@@ -8,18 +8,26 @@ function ProfileForm(props) {
 
     useEffect(() => {
         async function getProfile() {
-            const response = await fetch(`/api_v1/accounts/profiles/`); //need to target the endpoint specific to the logged in user???
+            const response = await fetch(`/api_v1/accounts/profiles/current_user/`);
             if(!response.ok) {
-                console.log(response);
+                // console.log(response);
+                setProfile({
+                    first_name: '',
+                    last_name: '',
+                    phone_number: '',
+                    member_notes: '',
+                    avatar: null,
+                });
             } else {
                 const data = await response.json();
-                setProfile(data);
+                console.log('data', data)
+                setProfile({...data});
             }
+           
         }
         getProfile();
     }, [])
 
-    
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -44,14 +52,16 @@ function ProfileForm(props) {
         console.warn(error);
     }
 
-    async function handleSubmit(event){
-        event.preventDefault();
+    async function handleSave(event){
+       
         const formData = new FormData();
         formData.append('first_name', profile.first_name);
         formData.append('last_name', profile.last_name);
         formData.append('phone_number', profile.phone_number)
-        formData.append('notes', profile.text)
-        formData.append('avatar', profile.avatar);
+        formData.append('member_notes', profile.member_notes)
+        if(profile.avatar instanceof File) {
+            formData.append('avatar', profile.avatar);
+        }
 
         const options = {
             method: 'POST',
@@ -70,13 +80,42 @@ function ProfileForm(props) {
         }
     }
 
+    async function handleUpdate(event){
+       
+        const formData = new FormData();
+        if(profile.avatar instanceof File) {
+            formData.append('avatar', profile.avatar);
+        }
+
+        formData.append('first_name', profile.first_name);
+        formData.append('last_name', profile.last_name);
+        formData.append('phone_number', profile.phone_number);
+        formData.append('member_notes', profile.member_notes);
+
+        const options = {
+            method: 'PUT',
+            headers: {
+                'X-CSRFToken': Cookies.get('csrftoken'),
+            },
+            body: formData,
+        };
+
+        const response = await fetch(`/api_v1/accounts/profiles/${profile.id}/`, options).catch(handleError);
+        if(!response.ok) {
+            console.log(response);
+        } else {
+            const data = await response.json();
+        }
+    }
+
+
     if(!profile) {
         return <div>SPINNER THINGY</div>
     }
 
     return (
         <div className='profile-form-container'>
-            <form className='col-4 offset-lg-4 profile-form'onSubmit={handleSubmit}>
+            <form className='col-4 offset-lg-4 profile-form'>
                 <div className='form-group text-left mb-3'>
                     <label htmlFor='first_name'>First Name: </label>
                     <input 
@@ -115,14 +154,15 @@ function ProfileForm(props) {
                 </div>
                 <div className='form-group text-left mb-3'>
                     <label htmlFor='notes'>Notes: </label>
-                    <input 
-                        type='textarea' 
-                        name='notes'
-                        id='notes'
+                    <textarea 
+                        name='member_notes'
+                        id='member_notes'
+                        cols="40"
+                        rows="5"
                         placeholder='Notes...'
-                        value={profile.text} 
+                        value={profile.member_notes} 
                         onChange={handleChange}
-                    />
+                    ></textarea>
                 </div>
                 <div className='form-group text-left mb-3'>
                     <input 
@@ -131,7 +171,13 @@ function ProfileForm(props) {
                         onChange={handleImage}/>
                     {profile.avatar && <img src={preview} alt=''/>}
                 </div>
-                <button type='submit' className='btn btn-dark mt-3' id='profile-button'>Save Profile</button>
+                
+                {!profile.id
+                ?
+                    <button type='button' className='btn btn-dark mt-3' id='profile-button' onClick={handleSave}>Save Profile</button>
+                :
+                    <button type='button' className='btn btn-dark mt-3' id='profile-button' onClick={handleUpdate}>Update Profile</button>
+                }
             </form>
         </div>
     )

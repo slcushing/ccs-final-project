@@ -4,7 +4,7 @@ from broadcast.views import broadcast_sms
 from accounts.models import Profile
 
 from .models import Event
-from .serializers import EventSerializer
+from .serializers import EventSerializer, RegisterSerializer
 from .permissions import IsCoachOrReadOnly
 
 # Create your views here.
@@ -49,11 +49,14 @@ class EventCancellationAPIView(generics.DestroyAPIView):
            
         broadcast_sms(recipients, message)
         
-        import pdb 
-        pdb.set_trace()
-        
         instance.delete()
 
+class EventRegisterAPIView(generics.UpdateAPIView):
+    serializer_class = RegisterSerializer
+    queryset = Event.objects.all()
+    
+    # def perform_update(self, serializer):
+    #     serializer.save()
 
 
 

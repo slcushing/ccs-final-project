@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAdminUser
 from django.shortcuts import get_object_or_404
 
 
-from .models import Profile, Note
-from .serializers import NoteSerializer, ProfileSerializer
+from .models import Profile
+from .serializers import ProfileSerializer
 from .permissions import ProfileListCreateUserPermissions
 
 # Create your views here.
@@ -17,12 +17,11 @@ class ProfileListAPIView(generics.ListCreateAPIView):
     
 
     def perform_create(self, serializer):
-        # import pdb 
-        # pdb.set_trace()
         user = self.request.user 
         user.first_name = self.request.data['first_name']
         user.last_name = self.request.data['last_name']
         user.save()
+
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
@@ -33,21 +32,31 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-class NoteListAPIView(generics.ListCreateAPIView):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializer
 
-    def perform_create(self, serializer):
-        # import pdb 
-        # pdb.set_trace()
-        id = self.request.data.get('profile')
-        profile = get_object_or_404(Profile, pk=id)
+class CurrentUserProfileAPIView(generics.RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+   
+    def get_object(self):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset, user=self.request.user)
+        return obj
 
-        serializer.save(user=self.request.user,profile=profile)
+# class NoteListAPIView(generics.ListCreateAPIView):
+#     queryset = Note.objects.all()
+#     serializer_class = NoteSerializer
 
-class NoteDetailAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializer
+#     def perform_create(self, serializer):
+#         # import pdb 
+#         # pdb.set_trace()
+#         id = self.request.data.get('profile')
+#         profile = get_object_or_404(Profile, pk=id)
+
+#         serializer.save(user=self.request.user,profile=profile)
+
+# class NoteDetailAPIView(generics.RetrieveUpdateAPIView):
+#     queryset = Note.objects.all()
+#     serializer_class = NoteSerializer
 
 
 #classyclass django

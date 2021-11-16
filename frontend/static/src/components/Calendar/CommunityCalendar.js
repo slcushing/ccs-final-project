@@ -185,6 +185,30 @@ function CommunityCalendar(props) {
         setShow(true);
     }
 
+    async function handleRegister() {
+        
+        const options = {
+            method: 'PUT',
+            headers: {
+                'X-CSRFToken': Cookies.get('csrftoken'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(event)
+        };
+
+        const response = await fetch(`/api_v1/events/register/${event.id}/`, options).catch(handleError);
+        if(!response.ok) {
+            console.log(response)
+        } else {
+            setShow(false);
+            const updatedEvents = [...events];
+            const index = updatedEvents.findIndex(e => e.id === event.id);
+            updatedEvents[index] = event;
+            setEvents(updatedEvents);
+            setEvent(defaultEvent);
+        }
+    }
+
     if(!events) {
         return <div>loading SPINNER</div>
     }
@@ -246,10 +270,11 @@ function CommunityCalendar(props) {
                         <Modal.Title>Event Details</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {event.details}
+                        <div>{event.details}</div>
+                        <div>happy</div>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button type='button' variant='success'>Register</Button>
+                        <Button type='button' variant='success' onClick={handleRegister}>Register</Button>
                         <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
                     </Modal.Footer>
                 </Modal>

@@ -12,7 +12,6 @@ import CommunityCalendar from './../Calendar/CommunityCalendar';
 import Workout from './../Workout/Workout';
 import Clients from './../Clients/Clients';
 import ProfileForm from './../Profile/ProfileForm';
-import ProfileEdit from './../Profile/ProfileEdit';
 import Cookies from 'js-cookie';
 
 
@@ -88,9 +87,6 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path='/calendar' isAuth={isAuth} isAdmin={isAdmin}>
           <CommunityCalendar isAuth={isAuth} isAdmin={isAdmin}/>
-        </PrivateRoute>
-        <PrivateRoute path='/manage' isAuth={isAuth} isAdmin={isAdmin}>
-          <ProfileEdit isAuth={isAuth} isAdmin={isAdmin}/>
         </PrivateRoute>
         <PrivateRoute path='/workouts' isAuth={isAuth} isAdmin={isAdmin}>
           <Workout isAuth={isAuth} isAdmin={isAdmin}/>
