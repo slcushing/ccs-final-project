@@ -1,6 +1,7 @@
 import { withRouter, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format } from 'date-fns';
+import {Modal, Button} from 'react-bootstrap'
 import Cookies from "js-cookie";
 
 
@@ -8,6 +9,7 @@ import Cookies from "js-cookie";
 function Sessions(props) {
     const {filter} = useParams();
     const [sessions, setSessions] = useState();
+    const [show, setShow] = useState(false);
    
     function handleError(error) {
         console.warn(error);
@@ -34,7 +36,7 @@ function Sessions(props) {
                       {
                         ...session,
                         start: session.start.toString(),
-                        end: session.start.toString(),
+                        end: session.end.toString(),
                       },
                     ]
                   : [
@@ -42,7 +44,7 @@ function Sessions(props) {
                       {
                         ...session,
                         start: session.start.toString(),
-                        end: session.start.toString(),
+                        end: session.end.toString(),
                       },
                     ];
 
@@ -81,6 +83,9 @@ function Sessions(props) {
 
     }
 
+    const handleClose = () => setShow(false);
+    const handleOpen = () => setShow(true);
+
     if(!sessions) {
         return <div>No Sessions</div>
     }
@@ -95,8 +100,22 @@ function Sessions(props) {
                         <time>{format(new Date(session.start), 'p')} - </time>
                         <time>{format(new Date(session.end), 'p')}</time>
                     </div>
-                    {!props.isAdmin && <button type="button" onClick={() => handleRegister(session)}>Register</button>}
-                    {props.isAdmin && <button>Attendees</button>}
+                    {!props.isAdmin && <button type="button" onClick={() => handleRegister(session)}>{session.is_registered ? 'Unregister' : 'Register'}</button>}
+                    
+                    {props.isAdmin && <button type="button" className='add-task-btn' onClick={handleOpen}>Attendees</button>}
+
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Attendees</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {session.attendees.map(attendee => <div> {attendee.first_name}</div>)}
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
+                        </Modal.Footer>
+                    </Modal>
+
                 </div>
             ));
 

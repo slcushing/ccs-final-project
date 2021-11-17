@@ -1,8 +1,9 @@
-import { withRouter } from 'react-router-dom'
-import {useState, useEffect} from 'react'
+import { withRouter } from 'react-router-dom';
+import {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
-import {Modal, Button, Form} from 'react-bootstrap'
-import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa'
+import {Modal, Button, Form} from 'react-bootstrap';
+import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa';
+import { BsSave } from "react-icons/bs";
 
 function TaskDetail(props) {
     const [isEditing, setIsEditing] = useState(false);
@@ -30,7 +31,7 @@ function TaskDetail(props) {
            
             {
                 isEditing ? 
-                <button type='button' className='save-task-btn' onClick={handleUpdate}>save</button> :
+                <button type='button' className='save-task-btn' onClick={handleUpdate}><BsSave/></button> :
                 <button type='button' className='edit-task-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>
             }
             <button type='button' className='delete-task-btn' onClick={props.handleDelete} value={id}><FaTrash/></button>
@@ -183,7 +184,7 @@ function TaskList(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Group>
-                        <Form.Label>Task:</Form.Label><Form.Control type='text' onChange={(e) => setText(e.target.value)} name='text' value={text}></Form.Control>
+                        <Form.Label>Task:</Form.Label><Form.Control type='text' onChange={(e) => setText(e.target.value)} autoComplete='off' name='text' value={text}></Form.Control>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>

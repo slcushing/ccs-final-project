@@ -35,13 +35,9 @@ function ClientDetail(props) {
             setIsEditing(false);
 
         }
-
-        
-        
     }
 
     
-
     return (
         <div className='client'>
             {
@@ -57,7 +53,7 @@ function ClientDetail(props) {
                                 <p>Primary phone: {props.client.phone_number}</p>
                                 <p>Primary email: {props.client.email}</p>
                                 <p>Client note: {props.client.member_notes}</p>
-                                <input type="text" name="coach_notes" value={coachNote} disabled={!isEditing} onChange={handleChange} />
+                                <textarea type="text" name="coach_notes" value={coachNote} disabled={!isEditing} cols='30' onChange={handleChange}></textarea>
                             
                                 <p>PT Coach: {props.client.coach_name}</p>
                                 <CardActionArea>
@@ -81,22 +77,23 @@ function ClientDetail(props) {
 }
 
 
-
 function Clients(props) {
-    const {filter} = useParams();
+    // const {filter} = useParams();
+    // console.log(props.computedMatch.params.filter)
     const [clients, setClients] = useState([]);
     const [searchClients, setSearchClients] = useState('');
     const [filteredResults, setFilteredResults] = useState();
 
     useEffect (() => {
         async function getClients() {
-            const response = await fetch(`/api_v1/accounts/profiles/`);
+            let url = `/api_v1/accounts/profiles/`
+           
+            const response = await fetch(url);
             if(!response.ok) {
                 console.log(response);
             } else {
                 const data = await response.json();
                 setClients(data);
-                console.log(data);
             }
         }
         getClients();
@@ -126,9 +123,10 @@ function Clients(props) {
         // }
     }
     // console.log({filteredResults});
-    const clientList = filteredResults || clients;
+
+    const clientList = searchClients ? filteredResults : clients;
     const ClientHTML = clientList
-    .filter(client => filter === 'pt' ? client.is_client : client)
+    .filter(client => props.computedMatch.params.filter === 'pt' ? client.is_client : client)
     .map(client => 
         <div className='client-detail-column'>
         <ClientDetail
@@ -168,7 +166,7 @@ function Clients(props) {
                 <NavLink to='/clients/'>All Members</NavLink>
                 <NavLink to='/clients/pt/'>Personal Training Clients</NavLink>
             </nav>
-            <input className='client-search' type='text' name='search' id='search' placeholder='Search Here...' onChange={searchItems}></input>
+            <input className='client-search' type='text' name='search' id='search' autoComplete='off' placeholder='Search Here...' onChange={searchItems}></input>
        
                 <section className='client-list'>
                     {ClientHTML}
@@ -178,4 +176,4 @@ function Clients(props) {
     )
 }
 
-export default withRouter(Clients)
+export default Clients

@@ -6,7 +6,7 @@ import Sessions from './../Workout/Sessions';
 import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa';
 import { format } from 'date-fns';
 import { is } from 'date-fns/locale';
-
+import { BsSave } from "react-icons/bs";
 
 
 
@@ -39,8 +39,8 @@ function WorkoutDetail(props) {
                         <label htmlFor="date">Date</label>
                         <input id="date" type='date' name='date' value={editWorkout.date} min='2021-11-01' onChange={handleChange}></input>
                         {/* <label htmlFor="text">Text</label>  */}
-                        <textarea type='text' name='text' id="text" rows={5} cols={30} value={editWorkout.text} onChange={handleChange}></textarea>
-                        <button type='button' className='save-workout-btn' onClick={handleUpdate}>save</button>
+                        <textarea type='text' name='text' id="text" className='workout-edit-box' rows={5} cols={20} value={editWorkout.text} onChange={handleChange}></textarea>
+                        <button type='button' className='save-workout-btn' onClick={handleUpdate}><BsSave/></button>
                     </div>
                 </>
                 :

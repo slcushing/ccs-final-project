@@ -86,7 +86,7 @@ function RegistrationForm(props) {
                         onChange={handleInput}
                         />
                 </div><div className='form-group text-left mb-3'>
-                    <label htmlFor='password1'>Password 1</label>
+                    <label htmlFor='password1'>Password</label>
                     <input
                         type='password'
                         className='form-control'
@@ -99,7 +99,7 @@ function RegistrationForm(props) {
                         />
                 </div>
                 <div className='form-group text-left mb-3'>
-                    <label htmlFor='password2'>Password 2</label>
+                    <label htmlFor='password2'>Confirm Password</label>
                     <input
                         type='password'
                         className='form-control'

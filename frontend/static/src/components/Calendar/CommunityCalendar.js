@@ -242,7 +242,7 @@ function CommunityCalendar(props) {
                             <Form.Label>Title: </Form.Label><Form.Control type='text' onChange={handleChange} name="title" value={event.title} placeholder='Event Title'></Form.Control>
                             <Form.Label>Start: </Form.Label><Form.Control name="start" value={event.start}></Form.Control>
                             <Form.Label>End: </Form.Label><Form.Control name="end" value={event.end}></Form.Control>
-                            <Form.Label>Details: </Form.Label><Form.Control type='text' onChange={handleChange} name="details" value={event.details} placeholder='Event details...'></Form.Control>
+                            <Form.Label>Details: </Form.Label><Form.Control type='text' onChange={handleChange} name="details" value={event.details} autoComplete='off' placeholder='Event details...'></Form.Control>
                             <Form.Check type='checkbox' label='All Day' name="allDay" checked={event.allDay} onChange={handleChange}></Form.Check>
                             <Form.Check type='checkbox' label='Community Event' name="gymEvent" checked={event.gymEvent} onChange={handleChange}></Form.Check>
                         </Form.Group>

@@ -5,7 +5,7 @@ function LandingPage() {
         <>
         <div className='landing-body'>
             <section>
-                <div>Where fitness and performance collide.</div>
+                <div>Where fitness + performance collide.</div>
                 <div id="landing-welcome">Welcome to the Factory.</div>
             </section>
             <aside>
@@ -13,7 +13,7 @@ function LandingPage() {
                 <div className='landing-atag'>
                     <NavLink to='/registration'>Register Here</NavLink>
                 </div>
-                <h4>Back for more? Welcome.</h4>
+                <h4>Back for more?</h4>
                 <div className='landing-atag'>
                     <NavLink to='/login'>Login Here</NavLink>
                 </div>
