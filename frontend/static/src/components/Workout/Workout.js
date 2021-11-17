@@ -169,10 +169,10 @@ function Workouts(props) {
                 
                 <section className='workout-list'>
                     <h3>Adult Performance Workouts</h3>
-                    {WorkoutListHTML}
                     {props.isAdmin && (
                         <button type='button' className='add-workout-btn' onClick={handleAdd}>Add Workout <FaRegPlusSquare/></button>
                     )}
+                    {WorkoutListHTML}
                 </section>
                 
                 <section className='class-list'>

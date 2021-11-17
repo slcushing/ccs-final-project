@@ -12,7 +12,7 @@
 .navbar-brand{
   width: auto;
   max-width: 100%;
-  max-height: 110px;
+  max-height: 90px;
   padding: 0;
 }
 
@@ -47,6 +47,7 @@
   font-family: 'Abel';
   font-weight: bolder;
   font-size: 14px;
+  margin-top: 1em;
   /* background-color: black; */
   /* color: white; */
 }
@@ -196,7 +197,11 @@
   background-color: white;
   color: black;
   font-family: 'Abel';
+}
 
+.add-workout-btn {
+  position: sticky;
+  top:2.5em;
 }
 
 .add-task-btn:hover,
@@ -331,6 +336,7 @@ h2 {
   opacity: 90%;
   padding-top: 10px;
 }
+
 
 .workout-list {
   margin: 1em;
