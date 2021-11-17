@@ -64,6 +64,14 @@
   background-size: 100%;
 }
 
+#landing-welcome {
+  font-size: 25px;
+  text-align: right;
+  margin: 1em;
+  font-family: 'source code pro';
+  font-weight: 300;
+}
+
 .landing-body section {
   width: 70%;
   padding: 2em;
@@ -71,7 +79,8 @@
   font-family: 'Abel', sans-serif;
   font-weight:900;
   color: white;
-  opacity: 90%;
+  opacity: 95%;
+  text-align: right;
 }
 
 .landing-body aside {

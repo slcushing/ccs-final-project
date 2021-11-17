@@ -1,11 +1,15 @@
 from rest_framework import generics
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+import datetime
 from broadcast.views import broadcast_sms
 from accounts.models import Profile
 
-from .models import Event
+from .models import Event, Session
 from .serializers import EventSerializer, RegisterSerializer
 from .permissions import IsCoachOrReadOnly
+
+from django.utils.timezone import now
 
 # Create your views here.
 
@@ -28,7 +32,8 @@ class EventListAPIView(generics.ListCreateAPIView):
         if type == 'coach':
             queryset = queryset.filter(owner=self.request.user)
         if type == 'session':
-            queryset = queryset.filter(session=True)
+            queryset = queryset.filter(session=True, start__gte=now().date(
+            ), start__lte=now().date() + datetime.timedelta(days=7))
         return queryset.order_by('start')
 
 class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -59,4 +64,15 @@ class EventRegisterAPIView(generics.UpdateAPIView):
     #     serializer.save()
 
 
+@api_view()
+def sessions_create(self):
+    sessions = Session.objects.all()
+    for session in sessions:
+        if session.is_active:
+            days = 10
+            start = session.start + datetime.timedelta(days=days)
+            end = session.end + datetime.timedelta(days=days)
+            obj, created = Event.objects.get_or_create(
+                title=session.title, start=start, end=end, session=True, owner=session.owner)
 
+    return Response({"message": "Sessions generated!"})

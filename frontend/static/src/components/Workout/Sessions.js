@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 function Sessions(props) {
     const {filter} = useParams();
-    const [sessions, setSessions] = useState([]);
+    const [sessions, setSessions] = useState();
    
     function handleError(error) {
         console.warn(error);
@@ -18,55 +18,36 @@ function Sessions(props) {
             const response = await fetch(`/api_v1/events/?type=session`);
             if(!response.ok) {
                 throw new Error('Network response was not OK');
-            } else {
-                const sessions = {};
-                const data = await response.json();
-                data.forEach(session => {
-                    let session_start_time = new Date(session.start);
-                    let session_end_time = new Date(session.end);
-
-                    let start = new Date();
-                    start.setHours(session_start_time.getHours());
-                    start.setMinutes(session_start_time.getMinutes());
-
-                    let end = new Date();
-                    end.setHours(session_end_time.getHours());
-                    end.setMinutes(session_end_time.getMinutes());
-                    
-
-                    for(let i = 0; i < 6; i++) {
-                        let day = start.getDay();
-                        if(day === 0) {
-                            i--;
-                        } else {
-                            // events.push({
-                            //     ...session,
-                            //     start: start.toString(),
-                            //     end: end.toString(),
-                            // }); 
-                            const key = start.toDateString();
-                            sessions[key] = !sessions[key]
-                                ? [{ 
-                                    ...session, 
-                                    start: start.toString(), 
-                                    end: end.toString() }]
-                                : [
-                                    ...sessions[key],
-                                    {
-                                      ...session,
-                                      start: start.toString(),
-                                      end: end.toString(),
-                                    },
-                                  ];
-                        }
-
-                        start = new Date(start.setDate(start.getDate() + 1));
-                        end = new Date(end.setDate(end.getDate() + 1));
-    
-                    }
-                });
-                setSessions(sessions);
             }
+
+            const sessions = {};
+            const data = await response.json();
+            console.log('data', data)
+
+            data.forEach(session => {
+                // session.start = new Date(session.start);
+                // session.end = new Date(session.end);
+                const date = new Date(session.start);
+                const key = date.toDateString();
+                sessions[key] = !sessions[key]
+                  ? [
+                      {
+                        ...session,
+                        start: session.start.toString(),
+                        end: session.start.toString(),
+                      },
+                    ]
+                  : [
+                      ...sessions[key],
+                      {
+                        ...session,
+                        start: session.start.toString(),
+                        end: session.start.toString(),
+                      },
+                    ];
+
+            });
+            setSessions(sessions);
         }
         getSessions();
     }, []);
@@ -86,13 +67,22 @@ function Sessions(props) {
         if(!response.ok) {
             console.log(response)
         } else {
-            const data = await response.json()
-            const updatedSessions = [...sessions];
-            const index = updatedSessions.findIndex(e => e.id === session.id);
-            updatedSessions[index] = data;
+            const data = await response.json(); // updated session event from the server (single object)
+            const key = new Date(data.start).toDateString(); // key inside sessions you need to target (sessions is an object on state)
+            const values = [...sessions[key]]; // all sessions (listed inside an array) for sessions[key]
+            const index = values.findIndex(e => e.id === data.id);
+            values[index] = data;
+            
+            const updatedSessions = {...sessions};
+            updatedSessions[key] = values;
+
             setSessions(updatedSessions);
         }
 
+    }
+
+    if(!sessions) {
+        return <div>No Sessions</div>
     }
 
     
