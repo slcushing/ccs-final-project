@@ -4,8 +4,15 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
+class AttendeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name')
+
 class EventSerializer(serializers.ModelSerializer):
     is_registered = serializers.SerializerMethodField()
+    attendee_list = AttendeeSerializer(many=True, read_only=True, source="attendees")
 
     class Meta:
         model = Event

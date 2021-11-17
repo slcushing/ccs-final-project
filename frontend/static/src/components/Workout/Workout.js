@@ -48,11 +48,11 @@ function WorkoutDetail(props) {
                     
                     <h5 className="workout-date">{format(new Date(props.workout.date + 'T08:00:00'), 'PPPP')}</h5>
                     <article>{props.workout.text}</article>
-                    <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>
+                    {props.isAdmin && <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>}
                 </>
         
             }
-                <button type='button' className='delete-workout-btn' value={editWorkout.id} onClick={props.handleDelete}><FaTrash/></button>
+                {props.isAdmin && <button type='button' className='delete-workout-btn' value={editWorkout.id} onClick={props.handleDelete}><FaTrash/></button>}
         </div>
     )
 
@@ -160,6 +160,7 @@ function Workouts(props) {
             workout={workout}
             handleDelete={handleDelete}
             handleUpdate={handleUpdate}
+            isAdmin={props.isAdmin}
         />
     )
     
@@ -177,7 +178,7 @@ function Workouts(props) {
                 
                 <section className='class-list'>
                     <h3>Adult Performance Group Training</h3>
-                    <Sessions isAuth={props.isAuth}/>
+                    <Sessions isAuth={props.isAuth} isAdmin={props.isAdmin}/>
                 </section>
             </div>
  

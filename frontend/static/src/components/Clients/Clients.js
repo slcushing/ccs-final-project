@@ -128,21 +128,25 @@ function Clients(props) {
         />
         )
 
-    const searchItems = (event) => {
-
-        setSearchClients(event.target.value);
-
-
-
-
+    
+    useEffect (() => {
         if (searchClients !== '') {
             const filteredData = clients.filter((client) => {
-                return Object.values(client).join('').toLowerCase().includes(searchClients.toLowerCase())
+                const checkValues = {
+                    first_name: client.first_name,
+                    last_name: client.last_name,
+                    email: client.email
+                }
+                return Object.values(checkValues).join('').toLowerCase().includes(searchClients.toLowerCase())
             });
             setFilteredResults(filteredData)
         } else {
             setFilteredResults(clients)
         }
+    }, [,searchClients]);
+
+    const searchItems = (event) => {
+        setSearchClients(event.target.value);
     }
 
         

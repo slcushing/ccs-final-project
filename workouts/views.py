@@ -4,7 +4,7 @@ from .serializers import WorkoutSerializer
 # Create your views here.
 
 class WorkoutListAPIView(generics.ListCreateAPIView):
-    queryset = Workout.objects.all()
+    queryset = Workout.objects.all().order_by('date')
     serializer_class = WorkoutSerializer
 
 class WorkoutDetailAPIView(generics.RetrieveUpdateDestroyAPIView):

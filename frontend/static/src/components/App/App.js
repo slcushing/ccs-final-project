@@ -70,30 +70,62 @@ function App() {
       <MainHeader isAuth={isAuth} isAdmin={isAdmin} handleLogout={handleLogout}/>
       {isAuth && <DashboardHeader username={username} isAdmin={isAdmin}/> }
       <Switch>
-        <Route path='/registration'>
-          <RegistrationForm isAuth={isAuth} setUser={setUser}/>
-        </Route>
-        <Route path='/login'>
-          <LoginForm isAuth={isAuth} isAdmin={isAdmin} setUser={setUser}/>
-        </Route>
-        <PrivateRoute path='/profile' isAuth={isAuth}>
-          <ProfileForm isAuth={isAuth}/>
-        </PrivateRoute>
-        <PrivateRoute path='/dashboard' isAuth={isAuth} isAdmin={isAdmin}>
-          <Dashboard isAuth={isAuth} isAdmin={isAdmin}/>
-        </PrivateRoute>
-        <PrivateRoute path='/clients/:filter?' isAuth={isAuth} isAdmin={isAdmin}>
-          <Clients isAuth={isAuth} isAdmin={isAdmin}/>
-        </PrivateRoute>
-        <PrivateRoute path='/calendar' isAuth={isAuth} isAdmin={isAdmin}>
-          <CommunityCalendar isAuth={isAuth} isAdmin={isAdmin}/>
-        </PrivateRoute>
-        <PrivateRoute path='/workouts' isAuth={isAuth} isAdmin={isAdmin}>
-          <Workout isAuth={isAuth} isAdmin={isAdmin}/>
-        </PrivateRoute>
-        <Route path='/' exact>
-          <LandingPage isAuth={isAuth} isAdmin={isAdmin}/>
-        </Route>
+        <Route
+          path="/registration"
+          render={(props) => (
+            <RegistrationForm 
+              {...props} 
+              isAuth={isAuth} 
+              setUser={setUser} 
+            />
+          )}
+        />
+        <Route
+          path="/login"
+          render={(props) => (
+            <LoginForm 
+              {...props} 
+              isAuth={isAuth} 
+              setUser={setUser} 
+            />
+          )}
+        />
+        <PrivateRoute 
+          path="/profile" 
+          isAuth={isAuth} 
+          component={ProfileForm} 
+        />
+        <PrivateRoute
+          path="/dashboard"
+          isAuth={isAuth}
+          isAdmin={isAdmin}
+          component={Dashboard}
+        />
+        <PrivateRoute
+          path="/clients/:filter?"
+          isAuth={isAuth}
+          isAdmin={isAdmin}
+          component={Clients}
+        />
+        <PrivateRoute
+          path="/calendar"
+          isAuth={isAuth}
+          isAdmin={isAdmin}
+          component={CommunityCalendar}
+        />
+        <PrivateRoute
+          path="/workouts"
+          isAuth={isAuth}
+          isAdmin={isAdmin}
+          component={Workout}
+        />
+        <Route 
+          path="/" 
+          exact
+          isAuth={isAuth} 
+          isAdmin={isAdmin} 
+          component={LandingPage}
+        />
       </Switch>
     </>
   );

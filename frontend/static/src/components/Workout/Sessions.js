@@ -74,8 +74,8 @@ function Sessions(props) {
             <div className="session">
                 <time>{format(new Date(session.start), 'p')} - </time>
                 <time>{format(new Date(session.end), 'p')}</time>
-                {!props.Admin && <button>Register</button>}
-                {/* {props.isAdmin && <button>Attendees</button>} */}
+                {!props.isAdmin && <button>Register</button>}
+                {props.isAdmin && <button>Attendees</button>}
             </div>
         ));
 
