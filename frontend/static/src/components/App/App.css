@@ -32,6 +32,8 @@ input {
   padding-top: 5em;
 }
 
+
+
 .register-form,
 .login-form,
 .profile-form{
@@ -289,19 +291,12 @@ h2 {
   object-fit: cover;
   height: 90px;
   width: 90px;
-  
 }
 
 .client-profile {
-  /* border: solid black 1px;
-  margin: 1em;
-  padding: 1em; */
-  /* width: 100%; */
   font-family: 'Source Code Pro', monospace;
   font-weight: bolder;
-  /* background-color:  white; */
   opacity: 90%;
-  /* text-align: center; */
 }
 
 .client-detail-column {
@@ -400,11 +395,6 @@ h2 {
   text-align: left;
 }
 
-/* .workout article {
-  padding-left: 3em;
-  padding-right: 3em;
-} */
-
 .workout-date {
   font-family: "source code pro";
   font-weight: bolder;
@@ -451,11 +441,6 @@ h2 {
 #session-title {
   font-weight: bold;
 }
-
-
-
-
-
 
 input[type='text']:disabled {
   border: none;

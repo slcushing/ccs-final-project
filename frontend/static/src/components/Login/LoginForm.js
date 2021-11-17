@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {withRouter, Redirect} from 'react-router-dom';
+import {withRouter, Redirect, Link} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function LoginForm(props) {
@@ -91,7 +91,7 @@ function LoginForm(props) {
                         />
                 </div>
                 <button type='submit' className='btn btn-danger' id='login-button'>Login</button>
-                <div>Not a member yet? Register here.</div>
+                <div>Not a member yet? Register <Link to='/registration'>here.</Link></div>
             </form>
             
 
