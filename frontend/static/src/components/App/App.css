@@ -23,9 +23,10 @@
 .register-container,
 .login-container,
 .profile-form-container{
-  background:url(/Users/stephaniecushing/Documents/ccs/homework/ccs-final-project/frontend/static/src/components/images/kpf_dumbbells.jpeg) no-repeat;
+  background: url("../../images/kpf_dumbbells.jpeg") no-repeat;
   height: 100vh;
   background-size: 100%;
+  padding-top: 5em;
 }
 
 .register-form,
@@ -42,12 +43,12 @@
 .logout {
   all: unset;
   /* border: solid black 1px; */
-  padding: 5px 15px;
+  padding: 3px 10px;
   font-family: 'Abel';
   font-weight: bolder;
-  font-size: 20px;
-  background-color: black;
-  color: white;
+  font-size: 14px;
+  /* background-color: black; */
+  /* color: white; */
 }
 
 .logout:hover {
@@ -58,7 +59,7 @@
 .landing-body {
   display:flex;
   height: 100vh;
-  background: url(/Users/stephaniecushing/Documents/ccs/homework/ccs-final-project/frontend/static/src/components/images/kpf_dumbbells.jpeg);
+  background: url("../../images/kpf_dumbbells.jpeg") no-repeat;
   background-size: 100%;
 }
 
@@ -111,7 +112,7 @@
 .dashboard-main {
   display: flex;
   flex-direction: row;
-  background: url(/Users/stephaniecushing/Documents/ccs/homework/ccs-final-project/frontend/static/src/components/images/kpf_dumbbells.jpeg)
+  background: url("../../images/kpf_dumbbells.jpeg") no-repeat;
 }
 
 .dash-header {
@@ -232,9 +233,17 @@
 }
 
 .monthly-cal {
-  margin: 1em 3em 1em 3em;
+  padding: 1em 3em 1em 3em;
   font-family: 'source code pro';
   font-weight: bolder;
+  background: url("../../images/kpf_empty.jpeg") no-repeat; 
+  height: 100%;
+}
+
+.rbc-calendar {
+  background-color: white;
+  opacity: 90%;
+  padding: 1em;
 }
 
 h2 {
@@ -263,8 +272,8 @@ h2 {
   text-align: center;
 }
 
-.client-container { 
-  background: url(/Users/stephaniecushing/Documents/ccs/homework/ccs-final-project/frontend/static/src/components/images/kpf_rowers.jpeg) no-repeat;
+.client-container {
+  background: url("../../images/kpf_rowers.jpeg") no-repeat; 
   height: 100%;
 }
 
@@ -308,7 +317,7 @@ h2 {
   justify-content: space-around;
   height: 100vh;
   padding-top: 2em;
-  background: url(/Users/stephaniecushing/Documents/ccs/homework/ccs-final-project/frontend/static/src/components/images/kpf_empty.jpeg);
+  background: url("../../images/kpf_empty.jpeg") no-repeat;
   background-size: 100% no-repeat;
 }
 
@@ -347,6 +356,11 @@ h2 {
   padding:10px;
   font-family: 'Abel';
   text-align: center;
+}
+
+.workout article {
+  padding-left: 3em;
+  padding-right: 3em;
 }
 
 .workout-date {

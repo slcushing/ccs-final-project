@@ -72,11 +72,10 @@ function Sessions(props) {
     const sessionsHTML = days.map(day => {
         const details = sessions[day].map(session => (
             <div className="session">
-                {/* <p id='session-title'>{session.title}</p> */}
                 <time>{format(new Date(session.start), 'p')} - </time>
                 <time>{format(new Date(session.end), 'p')}</time>
-                {props.isAuth && !props.isAdmin && <button>Register</button>}
-                {props.isAdmin && <button>Attendees</button>}
+                {!props.Admin && <button>Register</button>}
+                {/* {props.isAdmin && <button>Attendees</button>} */}
             </div>
         ));
 
@@ -87,18 +86,6 @@ function Sessions(props) {
             </>
         )
     })
-
-    // const sessionsHTML = sessions
-    // .map(event =>
-    //         <div key={event.id} className = 'session-info'>
-    //             <p className='d-block'>Adult Performance Group Training
-    //             <time className="d-block">start: {format(new Date(event.start), 'MM/dd/yyyy hh:mm a')}</time>
-    //             <time className="d-block">end: {format(new Date(event.end), 'MM/dd/yyyy hh:mm a')}</time>
-    //             <p className='d-block'>Attendees: {event.attendees}</p>
-    //             </p>
-    //         </div>
-    // )
-    // .sort( (a,b) => new Date(b) - new Date(a));
     
     
     return(

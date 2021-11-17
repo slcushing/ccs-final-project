@@ -201,11 +201,12 @@ function CommunityCalendar(props) {
             console.log(response)
         } else {
             setShow(false);
+            const data = await response.json()
             const updatedEvents = [...events];
             const index = updatedEvents.findIndex(e => e.id === event.id);
-            updatedEvents[index] = event;
+            updatedEvents[index] = data;
             setEvents(updatedEvents);
-            setEvent(defaultEvent);
+            // setEvent(defaultEvent);
         }
     }
 
@@ -267,14 +268,14 @@ function CommunityCalendar(props) {
             {!props.isAdmin && (
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Event Details</Modal.Title>
+                        <Modal.Title>Event</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        <div>{event.title}</div>
                         <div>{event.details}</div>
-                        <div>happy</div>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button type='button' variant='success' onClick={handleRegister}>Register</Button>
+                        <Button type='button' variant='success' onClick={handleRegister}>{event.is_registered ? 'Unregister' : 'Register'}</Button>
                         <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
                     </Modal.Footer>
                 </Modal>

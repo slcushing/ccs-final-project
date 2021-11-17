@@ -5,6 +5,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import Sessions from './../Workout/Sessions';
 import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa';
 import { format } from 'date-fns';
+import { is } from 'date-fns/locale';
 
 
 
@@ -37,8 +38,8 @@ function WorkoutDetail(props) {
                     <div>
                         <label htmlFor="date">Date</label>
                         <input id="date" type='date' name='date' value={editWorkout.date} min='2021-11-01' onChange={handleChange}></input>
-                        <label htmlFor="text">Text</label> 
-                        <input type='textarea' name='text' id="text" rows={10} value={editWorkout.text} onChange={handleChange}/>
+                        {/* <label htmlFor="text">Text</label>  */}
+                        <textarea type='text' name='text' id="text" rows={5} cols={30} value={editWorkout.text} onChange={handleChange}></textarea>
                         <button type='button' className='save-workout-btn' onClick={handleUpdate}>save</button>
                     </div>
                 </>
@@ -48,7 +49,6 @@ function WorkoutDetail(props) {
                     <h5 className="workout-date">{format(new Date(props.workout.date + 'T08:00:00'), 'PPPP')}</h5>
                     <article>{props.workout.text}</article>
                     <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>
-                   
                 </>
         
             }
@@ -154,15 +154,15 @@ function Workouts(props) {
         return <div>spinner thingy</div>
     }
 
-    const WorkoutListHTML = workouts.map(workout => 
+    const WorkoutListHTML = workouts.map(workout =>
        <WorkoutDetail
             key={workout.id}
             workout={workout}
             handleDelete={handleDelete}
             handleUpdate={handleUpdate}
         />
-        )
-
+    )
+    
     return(
         <>  
             <div className='workout-container'>
@@ -190,7 +190,7 @@ function Workouts(props) {
                             <Form.Label>Date:</Form.Label>
                             <Form.Control type='date' name='workout-date' value={date} min={date} onChange={(e) => setDate(e.target.value)}></Form.Control>
                             <Form.Label>Workout:</Form.Label>
-                            <Form.Control type='text' as='textarea' rows={10} onChange={(e) => setText(e.target.value)} name='text' value={text}>
+                            <Form.Control type='text' as='textarea' onChange={(e) => setText(e.target.value)} name='text' value={text}>
                             </Form.Control>
                         </Form.Group>
                     </Modal.Body>

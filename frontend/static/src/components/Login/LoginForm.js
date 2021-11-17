@@ -91,7 +91,10 @@ function LoginForm(props) {
                         />
                 </div>
                 <button type='submit' className='btn btn-danger' id='login-button'>Login</button>
+                <div>Not a member yet? Register here.</div>
             </form>
+            
+
         </div>
     )
 

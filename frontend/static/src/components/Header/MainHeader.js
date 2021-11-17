@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { MdLogout } from 'react-icons/md';
 
 function Header(props) {
     return(
@@ -16,7 +16,7 @@ function Header(props) {
                             </li>
                         )} */}
                         {props.isAuth && (
-                            <button type='submit' className='logout' onClick={() => props.handleLogout()}>Logout</button>
+                            <button type='submit' className='logout' onClick={() => props.handleLogout()}>Logout <MdLogout/></button>
                         )}
                     </ul>
                 </div>
