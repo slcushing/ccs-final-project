@@ -9,7 +9,6 @@ import enUS from 'date-fns/locale/en-US'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {Modal, Button, Form, ModalBody} from 'react-bootstrap'
 import Cookies from 'js-cookie';
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const defaultEvent = {
     title:'',
