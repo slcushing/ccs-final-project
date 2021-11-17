@@ -101,8 +101,10 @@ function Sessions(props) {
     const sessionsHTML = days.map(day => {
             const details = sessions[day].map(session => (
                 <div className="session">
-                    <time>{format(new Date(session.start), 'p')} - </time>
-                    <time>{format(new Date(session.end), 'p')}</time>
+                    <div className='session-time'>
+                        <time>{format(new Date(session.start), 'p')} - </time>
+                        <time>{format(new Date(session.end), 'p')}</time>
+                    </div>
                     {!props.isAdmin && <button type="button" onClick={() => handleRegister(session)}>Register</button>}
                     {props.isAdmin && <button>Attendees</button>}
                 </div>

@@ -1,6 +1,7 @@
 import { withRouter, useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { Card, CardActionArea, CardContent } from '@mui/material';
 import { ModalBody } from 'react-bootstrap';
 import Workout from '../Workout/Workout';
 
@@ -47,20 +48,28 @@ function ClientDetail(props) {
                
                 <>
                     <div key={props.client.id} className='client-profile'>
-                        <img className='client-photo' src={props.client.avatar} alt=''/>
-                        <p>{props.client.first_name} {props.client.last_name}</p>
-                        <p>Primary phone: {props.client.phone_number}</p>
-                        <p>Primary email: {props.client.email}</p>
-                        <p>Client note: {props.client.member_notes}</p>
-                        <input type="text" name="coach_notes" value={coachNote} disabled={!isEditing} onChange={handleChange} />
-                       
-                        <p>PT Coach: {props.client.coach_name}</p>
-                        {isEditing 
-                        ?
-                        <button type='button' className='edit-note-btn' onClick={handleSave}>Save</button>
-                        :
-                        <button type='button' className='edit-note-btn' onClick={() => setIsEditing(true)}>Edit</button>
-                        }
+                        <Card className='clientprofiles d-flex-col p-2 mb-3'>
+                            <CardContent className='d-flex'>
+                                <img className='client-photo rounded-circle' src={props.client.avatar} alt=''/>
+                                <p>{props.client.first_name} {props.client.last_name}</p>
+                            </CardContent>
+                            <CardContent className="d-flex-col">
+                                <p>Primary phone: {props.client.phone_number}</p>
+                                <p>Primary email: {props.client.email}</p>
+                                <p>Client note: {props.client.member_notes}</p>
+                                <input type="text" name="coach_notes" value={coachNote} disabled={!isEditing} onChange={handleChange} />
+                            
+                                <p>PT Coach: {props.client.coach_name}</p>
+                                <CardActionArea>
+                                    {isEditing 
+                                    ?
+                                    <button type='button' className='edit-note-btn' onClick={handleSave}>Save</button>
+                                    :
+                                    <button type='button' className='edit-note-btn' onClick={() => setIsEditing(true)}>Edit</button>
+                                    }
+                                </CardActionArea>
+                            </CardContent>
+                        </Card>
                         
                     </div>
 
@@ -121,11 +130,13 @@ function Clients(props) {
     const ClientHTML = clientList
     .filter(client => filter === 'pt' ? client.is_client : client)
     .map(client => 
+        <div className='client-detail-column'>
         <ClientDetail
             key={client.id}
             client={client}
             handleUpdate={handleUpdate}
         />
+        </div>
         )
 
     
