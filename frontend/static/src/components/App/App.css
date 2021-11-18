@@ -26,7 +26,7 @@ input {
 .register-container,
 .login-container,
 .profile-form-container{
-  /* background: url("../../images/kpf_dumbbells.jpeg") no-repeat; */
+  background: url("../images/kpf_dumbbells.jpeg") no-repeat;
   height: 100vh;
   background-size: 100%;
   padding-top: 5em;
@@ -63,7 +63,7 @@ input {
 .landing-body {
   display:flex;
   height: 100vh;
-  /* background: url("../../images/kpf_dumbbells.jpeg") no-repeat; */
+  background: url("../images/kpf_dumbbells.jpeg") no-repeat;
   background-size: 100%;
 }
 
@@ -125,7 +125,7 @@ input {
 .dashboard-main {
   display: flex;
   flex-direction: row;
-  /* background: url("../../images/kpf_dumbbells.jpeg") no-repeat; */
+  background: url("../images/kpf_dumbbells.jpeg") no-repeat;
 }
 
 .dash-header {
@@ -272,7 +272,7 @@ input {
   padding: 1em 3em 1em 3em;
   font-family: 'source code pro';
   font-weight: bolder;
-  /* background: url("../../images/kpf_empty.jpeg") no-repeat;  */
+  background: url("../images/kpf_empty.jpeg") no-repeat; 
   height: 100%;
 }
 
@@ -313,7 +313,7 @@ h2 {
 }
 
 .client-container {
-  /* background: url("../../images/kpf_rowers.jpeg") no-repeat;  */
+  background: url("../images/kpf_rowers.jpeg") no-repeat; 
   background-size: cover;
   
 }
@@ -358,7 +358,7 @@ h2 {
   justify-content: space-around;
   height: 100vh;
   padding-top: 2em;
-  /* background: url("../../images/kpf_empty.jpeg") no-repeat; */
+  background: url("../images/kpf_empty.jpeg") no-repeat;
   background-size: 100% no-repeat;
 }
 
