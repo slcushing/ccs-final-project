@@ -102,7 +102,7 @@ function Sessions(props) {
                     </div>
                     {!props.isAdmin && <button type="button" onClick={() => handleRegister(session)}>{session.is_registered ? 'Unregister' : 'Register'}</button>}
                     
-                    {props.isAdmin && <button type="button" className='add-task-btn' onClick={handleOpen}>Attendees</button>}
+                    {props.isAdmin && <button type="button" className='add-attendee-btn' onClick={handleOpen}>Attendees</button>}
 
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>

@@ -26,13 +26,11 @@ input {
 .register-container,
 .login-container,
 .profile-form-container{
-  background: url("../../images/kpf_dumbbells.jpeg") no-repeat;
+  /* background: url("../../images/kpf_dumbbells.jpeg") no-repeat; */
   height: 100vh;
   background-size: 100%;
   padding-top: 5em;
 }
-
-
 
 .register-form,
 .login-form,
@@ -65,7 +63,7 @@ input {
 .landing-body {
   display:flex;
   height: 100vh;
-  background: url("../../images/kpf_dumbbells.jpeg") no-repeat;
+  /* background: url("../../images/kpf_dumbbells.jpeg") no-repeat; */
   background-size: 100%;
 }
 
@@ -127,7 +125,7 @@ input {
 .dashboard-main {
   display: flex;
   flex-direction: row;
-  background: url("../../images/kpf_dumbbells.jpeg") no-repeat;
+  /* background: url("../../images/kpf_dumbbells.jpeg") no-repeat; */
 }
 
 .dash-header {
@@ -208,23 +206,28 @@ input {
   color:#f9010e;
 }
 
-.add-task-btn,
+.add-task-btn {
+  all: unset;
+  font-family: 'Abel';
+  margin-right: 0;
+}
+
+.add-task-btn:hover {
+  color: #f9010e;
+}
+
+
 .add-workout-btn {
-  border: black solid 1px;
+  all: unset;
   background-color: white;
   color: black;
   font-family: 'Abel';
+  opacity: 90%;
 }
 
-.add-workout-btn {
-  position: sticky;
-  top:2.5em;
-}
 
-.add-task-btn:hover,
 .add-workout-btn:hover {
   background-color: #f9010e;
-  border-radius: 5%;
 }
 
 .save-workout-btn,
@@ -270,7 +273,7 @@ input {
   padding: 1em 3em 1em 3em;
   font-family: 'source code pro';
   font-weight: bolder;
-  background: url("../../images/kpf_empty.jpeg") no-repeat; 
+  /* background: url("../../images/kpf_empty.jpeg") no-repeat;  */
   height: 100%;
 }
 
@@ -299,13 +302,18 @@ h2 {
   opacity: 90%;
 }
 
+.client-search {
+  width: 25%;
+  margin-top: 5px;
+}
+
 .client-detail-column {
   break-inside: avoid;
   page-break-inside: avoid;
 }
 
 .client-container {
-  background: url("../../images/kpf_rowers.jpeg") no-repeat; 
+  /* background: url("../../images/kpf_rowers.jpeg") no-repeat;  */
   background-size: cover;
   
 }
@@ -350,7 +358,7 @@ h2 {
   justify-content: space-around;
   height: 100vh;
   padding-top: 2em;
-  background: url("../../images/kpf_empty.jpeg") no-repeat;
+  /* background: url("../../images/kpf_empty.jpeg") no-repeat; */
   background-size: 100% no-repeat;
 }
 
@@ -378,6 +386,14 @@ h2 {
   opacity: 90%;
   overflow: scroll;
   padding: 0 2em 2em 2em;
+}
+
+.workout-header {
+  position: sticky;
+  top:0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .class-list {
@@ -447,4 +463,9 @@ input[type='text']:disabled {
   color: #000;
   background: transparent;
   font-weight: bolder;
+}
+
+.btn-danger {
+  background-color: #f9010e;
+  border-color: #f9010e;
 }

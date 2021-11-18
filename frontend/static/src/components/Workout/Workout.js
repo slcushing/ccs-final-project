@@ -38,9 +38,8 @@ function WorkoutDetail(props) {
                     <div>
                         <label htmlFor="date">Date</label>
                         <input id="date" type='date' name='date' value={editWorkout.date} min='2021-11-01' onChange={handleChange}></input>
-                        {/* <label htmlFor="text">Text</label>  */}
                         <textarea type='text' name='text' id="text" className='workout-edit-box' rows={5} cols={20} value={editWorkout.text} onChange={handleChange}></textarea>
-                        <button type='button' className='save-workout-btn' onClick={handleUpdate}><BsSave/></button>
+                        <button type='button' className='save-workout-btn' onClick={handleUpdate}>Save <BsSave/></button>
                     </div>
                 </>
                 :
@@ -169,10 +168,12 @@ function Workouts(props) {
             <div className='workout-container'>
                 
                 <section className='workout-list'>
+                    <div className='workout-header'>
                     <h3>Adult Performance Workouts</h3>
                     {props.isAdmin && (
-                        <button type='button' className='add-workout-btn' onClick={handleAdd}>Add Workout <FaRegPlusSquare/></button>
+                        <button type='button' className='add-workout-btn' onClick={handleAdd}>Add <FaRegPlusSquare/></button>
                     )}
+                    </div>
                     {WorkoutListHTML}
                 </section>
                 

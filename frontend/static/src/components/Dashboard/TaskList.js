@@ -2,7 +2,7 @@ import { withRouter } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
 import {Modal, Button, Form} from 'react-bootstrap';
-import { FaRegEdit, FaTrash, FaRegPlusSquare } from 'react-icons/fa';
+import { FaRegEdit, FaTrash, FaPlusSquare } from 'react-icons/fa';
 import { BsSave } from "react-icons/bs";
 
 function TaskDetail(props) {
@@ -175,7 +175,7 @@ function TaskList(props) {
             <div className='task-container'>
                 <h4>Tasks</h4>
                 {TaskListHTML}
-                <button type="button" className='add-task-btn' onClick={handleAdd}>Add task <FaRegPlusSquare/></button>
+                <button type="button" className='add-task-btn' onClick={handleAdd}>Add task <FaPlusSquare/></button>
             </div>
 
             <Modal show={show} onHide={handleClose}>

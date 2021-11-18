@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { Card, CardActionArea, CardContent } from '@mui/material';
 import { ModalBody } from 'react-bootstrap';
 import Workout from '../Workout/Workout';
+import { FaSearch } from "react-icons/fa"
 
 
 function ClientDetail(props) {
@@ -165,9 +166,9 @@ function Clients(props) {
             <nav className='client-nav'>
                 <NavLink to='/clients/'>All Members</NavLink>
                 <NavLink to='/clients/pt/'>Personal Training Clients</NavLink>
+                <input className='client-search' type='text' name='search' id='search' autoComplete='off' placeholder='Search Here...' onChange={searchItems}></input>
             </nav>
-            <input className='client-search' type='text' name='search' id='search' autoComplete='off' placeholder='Search Here...' onChange={searchItems}></input>
-       
+
                 <section className='client-list'>
                     {ClientHTML}
                 </section>
