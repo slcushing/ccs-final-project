@@ -13,10 +13,9 @@ class Profile(models.Model):
     phone_number = PhoneNumberField(null=True)
     personalTraining = models.BooleanField(default=False)
     pt_coach = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pt_coach', blank=True, null=True)
-    avatar = models.ImageField(upload_to='profiles/', null=True)
+    avatar = models.ImageField(upload_to='profiles/', null=True, default='blank_avatar.png')
     coach_notes = models.TextField(null=True)
     member_notes = models.TextField(null=True)
-
 
     def __str__(self):
         return self.user.username

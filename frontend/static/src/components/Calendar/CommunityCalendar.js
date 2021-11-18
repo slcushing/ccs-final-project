@@ -204,6 +204,7 @@ function CommunityCalendar(props) {
             const updatedEvents = [...events];
             const index = updatedEvents.findIndex(e => e.id === event.id);
             updatedEvents[index] = data;
+            console.log('data', data);
             setEvents(updatedEvents);
             // setEvent(defaultEvent);
         }

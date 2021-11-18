@@ -26,6 +26,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    is_registered = serializers.SerializerMethodField()
     
     class Meta:
         model = Event 
@@ -43,3 +44,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         instance.save()
        
         return instance
+
+    def get_is_registered(self, obj):
+        user = self.context.get('request').user
+        if obj.attendees.all().filter(id=user.id).exists():
+            return True 
+        return False
+

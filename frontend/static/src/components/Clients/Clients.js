@@ -54,7 +54,7 @@ function ClientDetail(props) {
                                 <p>Primary phone: {props.client.phone_number}</p>
                                 <p>Primary email: {props.client.email}</p>
                                 <p>Client note: {props.client.member_notes}</p>
-                                <label>Coach note:</label><textarea type="text" name="coach_notes" value={coachNote} disabled={!isEditing} cols='30' onChange={handleChange}></textarea>
+                                <label>Coach note:</label><textarea type="text" name="coach_notes" value={coachNote} disabled={!isEditing} cols='20' onChange={handleChange}></textarea>
                             
                                 <p>PT Coach: {props.client.coach_name}</p>
                                 <CardActionArea>

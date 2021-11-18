@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -30,7 +31,7 @@ class EventListAPIView(generics.ListCreateAPIView):
         if type == 'community':
             queryset = queryset.filter(gymEvent=True)
         if type == 'coach':
-            queryset = queryset.filter(owner=self.request.user)
+            queryset = queryset.filter(Q(owner=self.request.user) | Q(gymEvent=True))
         if type == 'session':
             queryset = queryset.filter(session=True, start__gte=now().date(
             ), start__lte=now().date() + datetime.timedelta(days=7))
@@ -49,12 +50,16 @@ class EventCancellationAPIView(generics.DestroyAPIView):
         recipients = Profile.objects.all()
         message = "The event " + instance.title + " is cancelled."
 
+        # import pdb 
+        # pdb.set_trace()
+
         if not instance.gymEvent:
             pass
-           
-        broadcast_sms(recipients, message)
-        
         instance.delete()
+        broadcast_sms(recipients, message)
+       
+        
+        
 
 class EventRegisterAPIView(generics.UpdateAPIView):
     serializer_class = RegisterSerializer

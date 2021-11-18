@@ -5,11 +5,45 @@ import {Modal, Button} from 'react-bootstrap'
 import Cookies from "js-cookie";
 
 
+function SessionDetail(props) {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleOpen = () => setShow(true);
+
+    const {session} = props;
+
+    return (
+        <div className="session">
+            <div className='session-time'>
+                <time>{format(new Date(session.start), 'p')} - </time>
+                <time>{format(new Date(session.end), 'p')}</time>
+            </div>
+            {!props.isAdmin && <button type="button" onClick={() => props.handleRegister(session)}>{session.is_registered ? 'Unregister' : 'Register'}</button>}
+            
+            {props.isAdmin && session.attendees.length > 0 && <button type="button" className='add-attendee-btn' onClick={handleOpen}>Attendees</button>}
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Attendees</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div>{session.attendee_list.map(attendee => <div>{attendee.first_name} {attendee.last_name}</div>)}</div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+
+        </div>
+    )
+}
+
+
 
 function Sessions(props) {
     const {filter} = useParams();
     const [sessions, setSessions] = useState();
-    const [show, setShow] = useState(false);
+   
    
     function handleError(error) {
         console.warn(error);
@@ -83,41 +117,19 @@ function Sessions(props) {
 
     }
 
-    const handleClose = () => setShow(false);
-    const handleOpen = () => setShow(true);
+   
 
     if(!sessions) {
         return <div>No Sessions</div>
     }
 
+
+    
     
     const days = Object.keys(sessions);
     console.log(days);
     const sessionsHTML = days.map(day => {
-            const details = sessions[day].map(session => (
-                <div className="session">
-                    <div className='session-time'>
-                        <time>{format(new Date(session.start), 'p')} - </time>
-                        <time>{format(new Date(session.end), 'p')}</time>
-                    </div>
-                    {!props.isAdmin && <button type="button" onClick={() => handleRegister(session)}>{session.is_registered ? 'Unregister' : 'Register'}</button>}
-                    
-                    {props.isAdmin && <button type="button" className='add-attendee-btn' onClick={handleOpen}>Attendees</button>}
-
-                    <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Attendees</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            {session.attendees.map(attendee => <div> {attendee.first_name}</div>)}
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button type='button' variant='danger' onClick={handleClose}>Close</Button>
-                        </Modal.Footer>
-                    </Modal>
-
-                </div>
-            ));
+            const details = sessions[day].map(session => <SessionDetail session={session} handleRegister={handleRegister} isAdmin={props.isAdmin} />);
 
             return (
                 <>

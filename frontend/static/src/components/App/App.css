@@ -15,7 +15,7 @@ input {
 .navbar-brand{
   width: auto;
   max-width: 100%;
-  max-height: 90px;
+  max-height: 100px;
   padding: 0;
 }
 
@@ -40,7 +40,7 @@ input {
   padding: 1em;
   font-family: 'Abel';
   font-weight: bold;
-  
+  font-size: 20px;
 }
 
 .logout {
@@ -49,7 +49,7 @@ input {
   padding: 3px 10px;
   font-family: 'Abel';
   font-weight: bolder;
-  font-size: 14px;
+  font-size: 18px;
   margin-top: 1em;
   /* background-color: black; */
   /* color: white; */
@@ -68,7 +68,7 @@ input {
 }
 
 #landing-welcome {
-  font-size: 25px;
+  font-size: 32px;
   text-align: right;
   margin: 1em;
   font-family: 'source code pro';
@@ -78,7 +78,7 @@ input {
 .landing-body section {
   width: 70%;
   padding: 2em;
-  font-size: 72px;
+  font-size: 82px;
   font-family: 'Abel', sans-serif;
   font-weight:900;
   color: white;
@@ -87,19 +87,20 @@ input {
 }
 
 .landing-body aside {
-  width: 25%;
-  height: 27%;
-  margin-top: 6em;
+  width: 30%;
+  height: 28%;
+  margin-top: 12em;
   margin-right: 10em;
   padding: 1em;
   background-color: white;
-  opacity: .94;
+  opacity: .92;
 }
 
 .landing-body h4 {
   font-family: 'Abel', sans-serif;
   margin: 10px;
   text-align: center;
+  font-size: 32px;
 }
 
 .landing-body a{
@@ -110,6 +111,7 @@ input {
   padding: 5px;
   color:white;
   background-color: black;
+  font-size: 20px;
 }
 
 .landing-body a:hover {
@@ -131,7 +133,7 @@ input {
 .dash-header {
   font-family: 'Abel', sans-serif;
   text-align: center;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: bold;
   color: white;
   padding-top: 10px;
@@ -158,20 +160,20 @@ input {
 
 .daily-cal {
   width: 70%;
-  margin: 1em;
+  margin: 2em;
   font-family: 'Abel';
   background-color: white;
   opacity: .94;
-  padding: 5px;
+  padding: 1.5em;
 }
 
 .task-container {
   display: flex;
   flex-direction: column;
-  margin: 1em;
+  margin: 2em;
   background-color: white;
   opacity: .94;
-  padding: 1em;
+  padding: 2em;
   height: 100%;
 }
 
@@ -223,10 +225,13 @@ input {
   color: black;
   font-family: 'Abel';
   opacity: .94;
+  font-size: 24px;
 }
 
 .add-workout-btn:hover {
-  background-color: #f9010e;
+  color: #f9010e;
+  opacity: .92;
+  
 }
 
 .save-workout-btn,
@@ -245,6 +250,7 @@ input {
   text-align: center;
   font-family: 'Abel', sans-serif;
   font-weight: 900;
+  font-size:32px;
 }
 
 #dash-nav {
@@ -256,7 +262,7 @@ input {
   text-decoration: none;
   font-weight: bold;
   font-family: 'Abel', sans-serif;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 #dash-nav a:hover,
@@ -300,6 +306,7 @@ h2 {
   font-family: 'Source Code Pro', monospace;
   font-weight: bolder;
   opacity: .94;
+  margin: 0;
 }
 
 .client-search {
@@ -315,14 +322,13 @@ h2 {
 .client-container {
   background: url("../images/kpf_rowers.jpeg") no-repeat; 
   background-size: cover;
-  
+  /* justify-content: center; */
 }
 
 .client-list {
-  margin: 2em 2em 0 2em;
+  margin: 2em 2em 0 6em;
   column-count: 3;
   padding-bottom: 2em;
-  
 }
 
 .client-nav {
@@ -375,25 +381,26 @@ h2 {
   background-color: white;
   opacity: .94;
   padding-top: 10px;
+  font-size: 32px;
 }
 
 .workout-list {
   margin: 1em;
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: white;
   opacity: .94;
   overflow: scroll;
   padding: 0 2em 2em 2em;
+  width: 35%;
 }
 
 .workout-header {
   position: sticky;
   top:0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .class-list {
@@ -402,6 +409,7 @@ h2 {
   background-color: white;
   opacity: .94;
   padding: 0 2em 2em 2em;
+  width: 35%;
 }
 
 .workout {
@@ -409,24 +417,26 @@ h2 {
   padding:10px;
   font-family: 'Abel';
   text-align: left;
+  font-size: 20px;
 }
 
 .workout-date {
   font-family: "source code pro";
   font-weight: bolder;
+  font-size: 24px;
 }
 
 .session {
   font-family: 'Abel';
   display:flex;
   justify-content: space-between;
-  padding-right: 5em;
+  padding-right: 7em;
 }
 
 .session button{
   margin-left: 10px;
   margin-bottom: 5px;
-  font-size: 12px;
+  font-size: 16px;
   background-color: black;
   color: white;
   font-weight: bold;
@@ -444,6 +454,8 @@ h2 {
 
 .session time{
   font-style: italic;
+  font-size: 18px;
+  
 }
 
 .session-day {
@@ -468,4 +480,22 @@ input[type='text']:disabled {
 .btn-danger {
   background-color: #f9010e;
   border-color: #f9010e;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "abel";
+}
+
+.btn-success {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "abel";
+}
+
+.rbc-toolbar-label {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.clientprofiles {
+  width: 85%;
 }
