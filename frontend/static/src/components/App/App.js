@@ -13,6 +13,7 @@ import CommunityCalendar from './../Calendar/CommunityCalendar';
 import Workout from './../Workout/Workout';
 import Clients from './../Clients/Clients';
 import ProfileForm from './../Profile/ProfileForm';
+import Footer from './../Footer/Footer';
 import Cookies from 'js-cookie';
 
 
@@ -128,6 +129,7 @@ function App() {
           component={LandingPage}
         />
       </Switch>
+      <Footer />
     </>
   );
 }

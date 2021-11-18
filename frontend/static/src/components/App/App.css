@@ -480,13 +480,16 @@ input[type='text']:disabled {
 .btn-danger {
   background-color: #f9010e;
   border-color: #f9010e;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   font-family: "abel";
 }
 
-.btn-success {
-  font-size: 20px;
+.btn-success,
+.btn-info,
+.btn-dark,
+.btn-warning {
+  font-size: 18px;
   font-weight: bold;
   font-family: "abel";
 }
@@ -498,4 +501,10 @@ input[type='text']:disabled {
 
 .clientprofiles {
   width: 85%;
+}
+
+.footer {
+  text-align: center;
+  font-family: 'Abel';
+  font-weight: bold;
 }

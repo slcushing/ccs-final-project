@@ -164,7 +164,7 @@ function ProfileForm(props) {
                         onChange={handleChange}
                     ></textarea>
                 </div>
-                <div className='form-group text-left mb-3'>
+                <div className='form-group text-left mb-3' id='profilephoto'>
                     <input 
                         type='file' 
                         name='avatar' 

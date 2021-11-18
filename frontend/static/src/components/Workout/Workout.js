@@ -142,7 +142,12 @@ function Workouts(props) {
             const data = await response.json();
             setShow(false);
             setText('');
-            setWorkouts([...workouts, data]);
+            // console.log(workouts)
+            let updatedWorkouts = [...workouts, data];
+            updatedWorkouts = updatedWorkouts.sort((a, b) => {
+                return new Date(a.date) - new Date(b.date);
+            });
+            setWorkouts(updatedWorkouts);
         }
     }
 
