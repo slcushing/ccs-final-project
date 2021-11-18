@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import { Route, Switch, withRouter, useHistory } from 'react-router-dom';
 import './App.css';
-import PrivateRoute from './../PrivateRoute/PrivateRoute'
+import Spinner from 'react-bootstrap/Spinner';
+import PrivateRoute from './../PrivateRoute/PrivateRoute';
 import RegistrationForm from './../Registration/RegistrationForm';
 import LoginForm from './../Login/LoginForm';
 import MainHeader from './../Header/MainHeader';
@@ -57,7 +58,7 @@ function App() {
  
 
   if(!user) {
-    return <div>I am loading!</div>
+    return <Spinner animation='border'/>
   }
 
   const isAuth = user?.isAuth;

@@ -2,9 +2,9 @@ import { withRouter, useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { Card, CardActionArea, CardContent } from '@mui/material';
-import { ModalBody } from 'react-bootstrap';
-import Workout from '../Workout/Workout';
-import { FaSearch } from "react-icons/fa"
+// import { ModalBody } from 'react-bootstrap';
+// import Workout from '../Workout/Workout';
+// import { FaSearch } from "react-icons/fa"
 
 
 function ClientDetail(props) {
@@ -46,7 +46,7 @@ function ClientDetail(props) {
                 <>
                     <div key={props.client.id} className='client-profile'>
                         <Card className='clientprofiles d-flex-col p-2 mb-3'>
-                            <CardContent className='d-flex'>
+                            <CardContent className='d-flex align-items-center'>
                                 <img className='client-photo rounded-circle' src={props.client.avatar} alt=''/>
                                 <p>{props.client.first_name} {props.client.last_name}</p>
                             </CardContent>
@@ -54,7 +54,7 @@ function ClientDetail(props) {
                                 <p>Primary phone: {props.client.phone_number}</p>
                                 <p>Primary email: {props.client.email}</p>
                                 <p>Client note: {props.client.member_notes}</p>
-                                <textarea type="text" name="coach_notes" value={coachNote} disabled={!isEditing} cols='30' onChange={handleChange}></textarea>
+                                <label>Coach note:</label><textarea type="text" name="coach_notes" value={coachNote} disabled={!isEditing} cols='30' onChange={handleChange}></textarea>
                             
                                 <p>PT Coach: {props.client.coach_name}</p>
                                 <CardActionArea>

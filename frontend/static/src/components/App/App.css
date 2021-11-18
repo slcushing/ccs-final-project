@@ -225,7 +225,6 @@ input {
   opacity: 90%;
 }
 
-
 .add-workout-btn:hover {
   background-color: #f9010e;
 }
@@ -294,6 +293,7 @@ h2 {
   object-fit: cover;
   height: 90px;
   width: 90px;
+  margin-right: 10px;
 }
 
 .client-profile {

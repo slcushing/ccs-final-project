@@ -188,6 +188,7 @@ function DashCalendar() {
         setShow(true);
     }
     
+    
     if(!events) {
         return <div>loading spinner</div>
     }
