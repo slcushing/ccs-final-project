@@ -36,7 +36,7 @@ input {
 .login-form,
 .profile-form{
   background-color: white;
-  opacity: 90%;
+  opacity: .94;
   padding: 1em;
   font-family: 'Abel';
   font-weight: bold;
@@ -82,7 +82,7 @@ input {
   font-family: 'Abel', sans-serif;
   font-weight:900;
   color: white;
-  opacity: 95%;
+  opacity: .95;
   text-align: right;
 }
 
@@ -93,7 +93,7 @@ input {
   margin-right: 10em;
   padding: 1em;
   background-color: white;
-  opacity: 90%;
+  opacity: .94;
 }
 
 .landing-body h4 {
@@ -170,7 +170,7 @@ input {
   flex-direction: column;
   margin: 1em;
   background-color: white;
-  opacity: 90%;
+  opacity: .94;
   padding: 1em;
   height: 100%;
 }
@@ -222,7 +222,7 @@ input {
   background-color: white;
   color: black;
   font-family: 'Abel';
-  opacity: 90%;
+  opacity: .94;
 }
 
 .add-workout-btn:hover {
@@ -278,7 +278,7 @@ input {
 
 .rbc-calendar {
   background-color: white;
-  opacity: 90%;
+  opacity: .94;
   padding: 1em;
 }
 
@@ -299,7 +299,7 @@ h2 {
 .client-profile {
   font-family: 'Source Code Pro', monospace;
   font-weight: bolder;
-  opacity: 90%;
+  opacity: .94;
 }
 
 .client-search {
@@ -373,7 +373,7 @@ h2 {
   font-family: 'Abel';
   font-weight: bold;
   background-color: white;
-  opacity: 90%;
+  opacity: .94;
   padding-top: 10px;
 }
 
@@ -383,7 +383,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   background-color: white;
-  opacity: 90%;
+  opacity: .94;
   overflow: scroll;
   padding: 0 2em 2em 2em;
 }
@@ -400,7 +400,7 @@ h2 {
   margin: 1em;
   overflow: scroll;
   background-color: white;
-  opacity: 90%;
+  opacity: .94;
   padding: 0 2em 2em 2em;
 }
 
