@@ -46,7 +46,7 @@ function WorkoutDetail(props) {
                 <>
                     
                     <h5 className="workout-date">{format(new Date(props.workout.date + 'T08:00:00'), 'PPPP')}</h5>
-                    <article>{props.workout.text}</article>
+                    <article className='workout-text'>{props.workout.text}</article>
                     {props.isAdmin && <button type='button' className='edit-workout-btn' onClick={() => setIsEditing(true)}><FaRegEdit/></button>}
                 </>
         
@@ -142,7 +142,7 @@ function Workouts(props) {
             const data = await response.json();
             setShow(false);
             setText('');
-            // console.log(workouts)
+            console.log(workouts)
             let updatedWorkouts = [...workouts, data];
             updatedWorkouts = updatedWorkouts.sort((a, b) => {
                 return new Date(a.date) - new Date(b.date);
