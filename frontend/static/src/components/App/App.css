@@ -512,3 +512,22 @@ input[type='text']:disabled {
 .workout-text {
   white-space: pre-wrap;
 }
+
+@media(max-width: 768px) {
+  .dashboard-main {
+    flex-direction: column;
+    align-content: center;
+  }
+}
+
+
+@media(max-width: 768px) {
+
+  #calendar .weekdays, #calendar .other-month {
+    display: none;
+  }
+
+  #calendar .date {
+    float: none;
+  }
+}
