@@ -68,16 +68,39 @@ class EventRegisterAPIView(generics.UpdateAPIView):
     # def perform_update(self, serializer):
     #     serializer.save()
 
-
 @api_view()
 def sessions_create(self):
     sessions = Session.objects.all()
     for session in sessions:
-        if session.is_active:
-            days = 10
-            start = session.start + datetime.timedelta(days=days)
-            end = session.end + datetime.timedelta(days=days)
-            obj, created = Event.objects.get_or_create(
-                title=session.title, start=start, end=end, session=True, owner=session.owner)
+        if session.active:
+            session_start = now()
+            session_start = session_start.replace(hour=session.start.hour,
+                                                  minute=session.start.minute)
+
+            session_end = now()
+            session_end = session_end.replace(hour=session.end.hour,
+                                              minute=session.end.minute)
+            days = 1
+            while days <= 10:
+                start = session_start + datetime.timedelta(days=days)
+                end = session_end + datetime.timedelta(days=days)
+                if not start.weekday() == 6:
+                    print('not ')
+                    obj, created = Event.objects.get_or_create(
+                        title=session.title, start=start, end=end, session=True, owner=session.owner)
+                days = days + 1
 
     return Response({"message": "Sessions generated!"})
+# @api_view()
+# def sessions_create(self):
+#     sessions = Session.objects.all()
+#     for session in sessions:
+#         if session.is_active:
+#             days = 10
+#             start = session.start + datetime.timedelta(days=days)
+#             end = session.end + datetime.timedelta(days=days)
+#             obj, created = Event.objects.get_or_create(
+#                 title=session.title, start=start, end=end, session=True, owner=session.owner)
+
+#     return Response({"message": "Sessions generated!"})
+
