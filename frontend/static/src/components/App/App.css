@@ -62,7 +62,7 @@ input {
 
 .landing-body {
   display:flex;
-  height: 100vh;
+  height: 85vh;
   background: url("../images/kpf_dumbbells.jpeg") no-repeat;
   background-size: 100%;
 }
