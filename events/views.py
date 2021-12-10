@@ -91,6 +91,7 @@ def sessions_create(self):
                 days = days + 1
 
     return Response({"message": "Sessions generated!"})
+    
 # @api_view()
 # def sessions_create(self):
 #     sessions = Session.objects.all()
